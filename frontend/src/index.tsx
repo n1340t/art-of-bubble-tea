@@ -1,4 +1,5 @@
 import './index.css';
+
 import * as ReactDOMClient from 'react-dom/client';
 import  {
   BrowserRouter,
@@ -11,6 +12,7 @@ import RecipesPage from './routes/recipes/page';
 ReactDOMClient.createRoot(
   document.getElementById('root') as HTMLElement
 ).render(
+
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<LandingPage />} />
