@@ -1,25 +1,20 @@
 import './index.css';
+import * as ReactDOMClient from 'react-dom/client';
+import  {
+  BrowserRouter,
+  Route,
+  Routes
+} from "react-router-dom";
 import LandingPage from './routes/page';
 import RecipesPage from './routes/recipes/page';
-import * as ReactDOM from 'react-dom/client';
-import  {
-  createBrowserRouter,
-  RouterProvider
-} from "react-router-dom";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <LandingPage />
-  },
-  {
-    path: "/recipes",
-    element: <RecipesPage />
-  }
-]);
-
-ReactDOM.createRoot(
+ReactDOMClient.createRoot(
   document.getElementById('root') as HTMLElement
 ).render(
-  <RouterProvider router={router} />
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/recipes" element={<RecipesPage />} />
+    </Routes>
+  </BrowserRouter>
 );
