@@ -27,3 +27,4 @@ app.get('/', (req: express.Request, res: express.Response) => {
 const runningMessage = `Server running at http://localhost:${port}`;
 app.listen(port, () => {
   console.log(runningMessage);
+});
