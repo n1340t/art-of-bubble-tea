@@ -5,7 +5,7 @@ import webpack, { Configuration as WebpackConfig } from 'webpack';
 const config: WebpackConfig = {
   entry: path.join(__dirname, 'frontend', 'src', 'index.tsx'),
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, 'backend', './public'),
     filename: '[name].bundle.js',
     publicPath: '/',
     clean: true,
@@ -15,7 +15,7 @@ const config: WebpackConfig = {
     rules: [
       {
         test: /\.(js|jsx|ts|tsx)$/,
-        exclude: /(vendor|node_modules|dist)/,
+        exclude: /(vendor|node_modules|public)/,
         use: 'babel-loader',
       },
       {
@@ -29,6 +29,17 @@ const config: WebpackConfig = {
           'sass-loader',
         ],
       },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'static/[hash][ext][query]'
+        }
+      },
+      {
+        test: /\.html$/i,
+        loader: 'html-loader'
+      }
     ],
   },
   resolve: {
@@ -38,6 +49,7 @@ const config: WebpackConfig = {
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
       template: 'public/index.html',
+      favicon: 'public/favicon.ico',
       minify: {
         collapseWhitespace: true,
         removeComments: true,
