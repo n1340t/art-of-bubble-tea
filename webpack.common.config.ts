@@ -1,5 +1,6 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import webpack, { Configuration as WebpackConfig } from 'webpack';
 
 const config: WebpackConfig = {
@@ -21,8 +22,9 @@ const config: WebpackConfig = {
       {
         test: /\.(sa|sc|c)ss$/i, // .sass or .scss
         use: [
+          MiniCssExtractPlugin.loader,
           // Creates `style` nodes from JS strings
-          'style-loader',
+          // 'style-loader',
           // Translates CSS into CommonJS
           'css-loader',
           // Compiles Sass to CSS
@@ -47,6 +49,7 @@ const config: WebpackConfig = {
   },
   plugins: [
     new webpack.ProgressPlugin(),
+    new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: 'public/index.html',
       favicon: 'public/favicon.ico',

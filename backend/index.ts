@@ -13,7 +13,7 @@ import webpackDev from './dev';
 const dev = process.env.NODE_ENV !== 'production';
 const app: express.Application = express();
 const port = process.env.PORT || 3000;
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
 app.use(cors());
 
