@@ -2,6 +2,7 @@ export type KFTea = {
   name: string;
   syrup: Data[] | null;
   tea: Data[] | null;
+  tea_unit: FluidUnit | null;
   water: Data[] | null;
   milk?: Data[] | null;
   honey: Data[] | null;
@@ -9,11 +10,11 @@ export type KFTea = {
   note: string | null;
 };
 
-type Data = {
+export type Data = {
   value: string | number;
   unit: Unit;
-  type: Recipe;
-  note: string;
+  type?: Recipe | null;
+  note?: string | null;
 };
 type Unit = FluidUnit | WeightUnit | OtherUnit;
 export enum WeightUnit {
