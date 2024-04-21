@@ -1,4 +1,4 @@
-import { version } from 'react';
+import React, { version } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function LandingPage() {
@@ -8,9 +8,12 @@ export default function LandingPage() {
         <h1 className="text-2xl font-medium text-center">The Art of Bubble Tea</h1>
         <p className="text-center">Version: {version}</p>
       </header>
-      <div className="flex w-full h-full flex-wrap justify-center items-center gap-5">
+      <div className="flex flex-col w-full h-full flex-wrap justify-center items-center gap-5">
         <Link to="/recipes" className="bg-[#282c34] p-5 rounded-md w-1/3 text-2xl font-medium text-white text-center">
             Recipes
+        </Link>
+        <Link to="/test" className="bg-[#282c34] p-5 rounded-md w-1/3 text-2xl font-medium text-white text-center">
+            Test
         </Link>
       </div>
     </div>
