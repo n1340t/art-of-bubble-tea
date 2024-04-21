@@ -3,12 +3,6 @@ import * as ReactDOM from 'react-dom/client';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 
-import * as ReactDOMClient from 'react-dom/client';
-import  {
-  BrowserRouter,
-  Route,
-  Routes
-} from "react-router-dom";
 import LandingPage from './routes/page';
 import RecipesPage from './routes/recipes/page';
 
