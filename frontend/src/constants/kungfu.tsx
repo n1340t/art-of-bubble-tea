@@ -1,20 +1,105 @@
-import { KFTea, WeightUnit, Recipe } from '../types/kf';
+import { KFTea, WeightUnit, Recipe, FluidUnit } from '../types/kf';
 
 const CMF: KFTea[] = [
   {
     name: 'CMF Green Tea',
     syrup: null,
-    tea: '240 - 180 - 140 ml',
+    tea: [
+      {
+        value: 240,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+      },
+      {
+        value: 180,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 140,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
     water: null,
-    honey: '1.2 - 0.9 - 0.7',
+    honey: [
+      {
+        value: 1.2,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 0.9,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 0.7,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+    ],
+    availability: true,
     note: null,
   },
   {
     name: 'CMF Black Tea',
     syrup: null,
-    tea: 'Black Tea: 180 - 140 - 100 ml',
-    water: '60 -40 -20 ml',
-    honey: '1.2 - 0.9 - 0.7',
+    tea: [
+      {
+        value: 180,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+        note: 'Black Tea'
+      },
+      {
+        value: 140,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+        note: 'Black Tea'
+      },
+      {
+        value: 100,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+        note: 'Black Tea'
+      },
+    ],
+    water: [
+      {
+        value: 60,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+      },
+      {
+        value: 40,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 20,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    honey: [
+      {
+        value: 1.2,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 0.9,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 0.7,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+    ],
+    availability: true,
     note: null,
   },
   {
