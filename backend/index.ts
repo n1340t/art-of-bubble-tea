@@ -15,6 +15,8 @@ const app: express.Application = express();
 const port = process.env.PORT || 3000;
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
+app.use(express.json())
+
 app.use(cors());
 
 if (dev) {
@@ -23,6 +25,8 @@ if (dev) {
 app.get('/', (req: express.Request, res: express.Response) => {
   res.send('Hello')
 });
+
+app.use('/api', require('../backend/routes/recipes'))
 
 const runningMessage = `Server running at http://localhost:${port}`;
 app.listen(port, () => {
