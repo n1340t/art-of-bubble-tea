@@ -36,4 +36,4 @@ router.delete('/:id', (req: Request, res: Response) => {
   } catch (error) {
     console.error((error as Error).message)
   }
-})››
+})
