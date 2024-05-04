@@ -1,6 +1,5 @@
 const { Pool } = require("pg");
 
-
 const dbParams =  {
   host: process.env.HOST,
   port: process.env.PORT,
@@ -11,4 +10,4 @@ const dbParams =  {
 
 const db = new Pool(dbParams);
 
-module.exports = db;
+export default db;

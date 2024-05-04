@@ -1,9 +1,8 @@
-import { Request, Response } from 'express';
-const router = require('express').Router();
-
+import { Request, Response, Router } from 'express';
+const recipesRouter = Router();
 
 // Get all recipes
-router.get('/', (req: Request, res: Response) => {
+recipesRouter.get('/', (req: Request, res: Response) => {
   try {
     
   } catch (error) {
@@ -12,7 +11,7 @@ router.get('/', (req: Request, res: Response) => {
 })
 
 // Create new recipe
-router.post('/', (req: Request, res: Response) => {
+recipesRouter.post('/', (req: Request, res: Response) => {
   try {
     
   } catch (error) {
@@ -21,7 +20,7 @@ router.post('/', (req: Request, res: Response) => {
 })
 
 // Update recipe
-router.put('/:id', (req: Request, res: Response) => {
+recipesRouter.put('/:id', (req: Request, res: Response) => {
   try {
     
   } catch (error) {
@@ -30,10 +29,12 @@ router.put('/:id', (req: Request, res: Response) => {
 })
 
 // Delete recipe
-router.delete('/:id', (req: Request, res: Response) => {
+recipesRouter.delete('/:id', (req: Request, res: Response) => {
   try {
     
   } catch (error) {
     console.error((error as Error).message)
   }
 })
+
+export default recipesRouter;

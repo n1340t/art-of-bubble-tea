@@ -1,3 +1,4 @@
+import recipesRouter from "../backend/routes/recipes";
 import dotenv from 'dotenv';
 const dotenvResult = dotenv.config();
 if (dotenvResult.error) {
@@ -26,7 +27,7 @@ app.get('/', (req: express.Request, res: express.Response) => {
   res.send('Hello')
 });
 
-app.use('/api', require('../backend/routes/recipes'))
+app.use('/api', recipesRouter)
 
 const runningMessage = `Server running at http://localhost:${port}`;
 app.listen(port, () => {
