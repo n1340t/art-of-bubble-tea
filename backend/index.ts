@@ -1,3 +1,4 @@
+import recipesRouter from "../backend/routes/recipes";
 import dotenv from 'dotenv';
 const dotenvResult = dotenv.config();
 if (dotenvResult.error) {
@@ -15,6 +16,8 @@ const app: express.Application = express();
 const port = process.env.PORT || 3000;
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
+app.use(express.json())
+
 app.use(cors());
 
 if (dev) {
@@ -23,6 +26,8 @@ if (dev) {
 app.get('/', (req: express.Request, res: express.Response) => {
   res.send('Hello')
 });
+
+app.use('/api', recipesRouter)
 
 const runningMessage = `Server running at http://localhost:${port}`;
 app.listen(port, () => {
