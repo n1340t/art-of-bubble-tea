@@ -51,19 +51,19 @@ INSERT INTO recipes (name, syrup, tea, water, milk, honey, availability, note)
       "value": 180,
       "unit": "ml",
       "type": "Standard",
-      note: 'Black Tea'
+      "note": 'Black Tea'
     },
     {
       "value": 140,
       "unit": "ml",
       "type": "OneTopping",
-      note: 'Black Tea'
+      "note": 'Black Tea'
     },
     {
       "value": 100,
       "unit": "ml",
       "type": "TwoorMoreToppings",
-      note: 'Black Tea'
+      "note": 'Black Tea'
     },
   ]::JSONB,
   [
