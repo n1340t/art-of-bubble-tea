@@ -38,12 +38,12 @@ const CMF: KFTea[] = [
       {
         value: 0.9,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.OneTopping,
       },
       {
         value: 0.7,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.TwoorMoreToppings,
       },
     ],
     availability: true,
@@ -139,12 +139,12 @@ const CMF: KFTea[] = [
       {
         value: 0.8,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.OneTopping,
       },
       {
         value: 0.6,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.TwoorMoreToppings,
       },
     ],
     availability: true,
@@ -237,12 +237,12 @@ const CMF: KFTea[] = [
       {
         value: 0.2,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.OneTopping,
       },
       {
         value: 0.1,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.TwoorMoreToppings,
       },
     ],
     availability: true,
@@ -333,19 +333,19 @@ const CMF: KFTea[] = [
         value: 140,
         unit: FluidUnit.ml,
         type: Recipe.Standard,
-        note: 'steam',
+        note: 'cold then steam',
       },
       {
         value: 100,
         unit: FluidUnit.ml,
         type: Recipe.OneTopping,
-        note: 'steam',
+        note: 'cold then steam',
       },
       {
         value: 80,
         unit: FluidUnit.ml,
         type: Recipe.TwoorMoreToppings,
-        note: 'steam',
+        note: 'cold then steam',
       },
     ],
     honey: [
@@ -528,7 +528,8 @@ const LATTE: KFTea[] = [
   {
     name: 'Pearl Latte with Brown Sugar',
     syrup: null,
-    tea: [
+    tea: null,
+    milk: [
       {
         value: 300,
         unit: FluidUnit.ml,
@@ -592,12 +593,12 @@ const LATTE: KFTea[] = [
       {
         value: 1.0,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.OneTopping,
       },
       {
         value: 0.8,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.TwoorMoreToppings,
       },
     ],
     availability: true,
@@ -949,12 +950,12 @@ const UNCATEGORIZED: KFTea[] = [
       {
         value: 0.2,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.OneTopping,
       },
       {
         value: 0.1,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.TwoorMoreToppings,
       },
     ],
     availability: true,
@@ -1147,12 +1148,12 @@ const UNCATEGORIZED: KFTea[] = [
       {
         value: 0.3,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.OneTopping,
       },
       {
         value: 0.2,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.TwoorMoreToppings,
       },
     ],
     availability: true,
@@ -1207,12 +1208,12 @@ const UNCATEGORIZED: KFTea[] = [
       {
         value: 0.2,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.OneTopping,
       },
       {
         value: 0.1,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.TwoorMoreToppings,
       },
     ],
     availability: true,
@@ -1267,12 +1268,12 @@ const UNCATEGORIZED: KFTea[] = [
       {
         value: 0.9,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.OneTopping,
       },
       {
         value: 0.7,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.TwoorMoreToppings,
       },
     ],
     availability: true,
@@ -1318,7 +1319,7 @@ const UNCATEGORIZED: KFTea[] = [
       {
         value: 0.6,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.OneTopping,
       },
     ],
     availability: true,
@@ -1394,12 +1395,12 @@ const UNCATEGORIZED: KFTea[] = [
       {
         value: 1.0,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.OneTopping,
       },
       {
         value: 0.8,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.TwoorMoreToppings,
       },
     ],
     availability: true,
@@ -1475,12 +1476,12 @@ const UNCATEGORIZED: KFTea[] = [
       {
         value: 0.4,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.OneTopping,
       },
       {
         value: 0.3,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.TwoorMoreToppings,
       },
     ],
     availability: true,
@@ -1574,12 +1575,12 @@ const FRUIT: KFTea[] = [
       {
         value: 0.4,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.OneTopping,
       },
       {
         value: 0.3,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.TwoorMoreToppings,
       },
     ],
     availability: true,
@@ -1634,12 +1635,12 @@ const FRUIT: KFTea[] = [
       {
         value: 0.3,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.OneTopping,
       },
       {
         value: 0.2,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.TwoorMoreToppings,
       },
     ],
     availability: true,
