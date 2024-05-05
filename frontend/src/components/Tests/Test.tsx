@@ -184,7 +184,7 @@ const AnswerDisplay = ({ answer, types }: { answer: KFTea; types: Recipe[] }) =>
 																			key={index}
 																			className='text-sm'
 																		>
-																			{key === 'value' ? `${value} ` : value}
+																			{`${value} `}
 																		</span>
 																	)
 															)}
