@@ -16,7 +16,7 @@ export type Data = {
   type?: Recipe | null;
   note?: string | null;
 };
-type Unit = FluidUnit | WeightUnit | OtherUnit;
+type Unit = FluidUnit | WeightUnit | PowderUnit | OtherUnit;
 export enum WeightUnit {
   g = 'g',
   kg = 'kg',
@@ -24,13 +24,18 @@ export enum WeightUnit {
 export enum FluidUnit {
   ml = 'ml',
   oz = 'oz',
-  honey = 'honey'
+  honey = 'honey',
+}
+export enum PowderUnit {
+  lg = 'large',
+  med = 'medium',
+  sm = 'small',
 }
 export enum OtherUnit {
-  ts = 'teaspoon'
+  ts = 'teaspoon',
 }
 export enum Recipe {
   Standard,
   OneTopping,
-  TwoorMoreToppings
+  TwoorMoreToppings,
 }

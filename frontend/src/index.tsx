@@ -1,16 +1,16 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { createHashRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, Navigate, RouterProvider } from 'react-router-dom';
 import './index.css';
 
-import LandingPage from './components/Landing';
+// import LandingPage from './components/Landing';
 import RecipesPage from './components/Recipes/Recipes'
 import Test from './components/Tests/Test';
 
 const router = createHashRouter([
 	{
 		path: '/',
-		Component: LandingPage,
+		element: <Navigate to='/test' replace />
 	},
 	{
 		path: '/recipes',
