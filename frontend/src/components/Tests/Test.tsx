@@ -2,10 +2,15 @@ import { useState } from 'react';
 import useKungfuData from '../../hooks/useKungfuData';
 import { KFTea, Recipe } from '../../types/kf';
 
+interface customKFTea extends KFTea {
+	id: number;
+}
+
 export default function Test() {
 	const [filter, setFilter] = useState<string>('');
 	const [numberOfQuestions, setNumberOfQuestions] = useState<number>(10);
-	const [isShuffled, setIsShuffled] = useState<boolean>(false);
+	const [isShuffled, setIsShuffled] = useState<boolean>(true); // Although this is not used, it is still triggers the re-render and sorting of the recipes as if the isShuffledRequest is true
+	const [isShuffledRequest, setIsShuffledRequest] = useState<boolean>(false);
 	const [currentPage, setCurrentPage] = useState(1);
 
 	const {
@@ -17,8 +22,8 @@ export default function Test() {
 		recipes: KFTea[];
 		types: string[];
 	} = useKungfuData({
+		shuffledRequest: isShuffledRequest,
 		recipesCount: numberOfQuestions,
-		shuffled: isShuffled,
 	});
 	const totalPages = Math.ceil(recipes.length / 10); // Pagination set to 10 by default
 
@@ -87,6 +92,21 @@ export default function Test() {
 
 				<div className='w-full flex flex-col gap-3 md:gap-4 px-5 md:px-10 pt-[6em] lg:pt-20 pb-6'>
 					<div className='flex flex-row items-center justify-end gap-x-3'>
+						{isShuffledRequest && (
+							<div
+								className='bg-indigo-500 rounded text-white focus:bg-indigo-600 p-1 px-3'
+								onClick={() => {
+									if (currentPage !== 1) {
+										setCurrentPage((curr: number) => 1);
+									}
+									setIsShuffled((prev: any) => !prev);
+									setIsShuffledRequest((prev: any) => false);
+								}}
+								role='button'
+							>
+								{'Reset order'}
+							</div>
+						)}
 						<div
 							className='bg-indigo-500 rounded text-white focus:bg-indigo-600 p-1 px-3'
 							onClick={() => {
@@ -94,6 +114,7 @@ export default function Test() {
 									setCurrentPage((curr: number) => 1);
 								}
 								setIsShuffled((prev: any) => !prev);
+								setIsShuffledRequest((prev: any) => true);
 							}}
 							role='button'
 						>
@@ -173,8 +194,8 @@ export default function Test() {
 	);
 }
 
-const AnswerDisplay = ({ answer, types }: { answer: KFTea; types: Recipe[] }) => {
-	const { name, availability, note, ...others } = answer;
+const AnswerDisplay = ({ answer, types }: { answer: customKFTea; types: Recipe[] }) => {
+	const { id, name, availability, note, ...others } = answer;
 	const getTypes = (): string[] => {
 		// Get all the types from fields: syrup, tea, water, milk, honey
 		const types: string[] = [];

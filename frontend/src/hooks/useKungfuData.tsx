@@ -1,33 +1,45 @@
-import { KFTea, Recipe } from '../types/kf';
+import { KFTea } from '../types/kf';
 import { KF_TEA_LIST } from '../constants/kungfu';
 import { useState, useMemo, useEffect } from 'react';
 import { debounce } from './useDebounce';
 
+// Add id to KFTea
+interface customKFTea extends KFTea {
+	id: number;
+}
+
 export default function useKungfuData({
 	recipesCount,
-	shuffled,
+	shuffledRequest,
 }: {
 	recipesCount?: number;
-	shuffled: boolean;
+	
+	shuffledRequest: boolean;
 }) {
 	const [search, setSearch] = useState<string>('');
 
 	const updateSearch = debounce((value: string) => {
 		setSearch((prev: any) => value);
 	}, 1000);
-	const recipes: KFTea[] = KF_TEA_LIST;
 
-	const filteredRecipes = useMemo(() => {
+	const recipes: any[] = KF_TEA_LIST;
+
+	// Add ids to keep track of the original order
+	recipes.forEach((recipe: any, index: number) => {
+		recipe.id = index;
+	});
+
+	const filteredRecipes: customKFTea[] = useMemo(() => {
 		return recipes.filter((recipe: KFTea) => {
 			return recipe.name.toLowerCase().includes(search.toLowerCase());
 		});
 	}, [search]);
 
-	
-	useEffect(() => {
-			filteredRecipes.sort(() => Math.random() - 0.5);
-	}, [shuffled, filteredRecipes, recipesCount]);
-		
+	if (shuffledRequest === true) {
+		filteredRecipes.sort(() => Math.random() - 0.5);
+	} else {
+		filteredRecipes.sort((a, b) => a.id - b.id);
+	}
 
 	return {
 		updateSearch,
