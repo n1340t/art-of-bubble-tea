@@ -100,7 +100,12 @@ export default function Test() {
 							{'Shuffle'}
 						</div>
 						<select
-							onChange={(e) => setNumberOfQuestions(parseInt(e.target.value))}
+							onChange={(e) => {
+								if (currentPage !== 1) {
+									setCurrentPage((curr: number) => 1);
+								}
+								setNumberOfQuestions(parseInt(e.target.value));
+							}}
 							className='bg-gray-50 ring-1 ring-black/20 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
 						>
 							{numberOfQuestions &&
