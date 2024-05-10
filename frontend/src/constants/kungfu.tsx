@@ -1,4 +1,12 @@
-import { KFTea, WeightUnit, Recipe, FluidUnit } from '../types/kf';
+import {
+  KFTea,
+  WeightUnit,
+  Recipe,
+  FluidUnit,
+  OtherUnit,
+  PowderUnit,
+  KFTeaDrink,
+} from '../types/kf';
 
 const CMF: KFTea[] = [
   {
@@ -31,12 +39,12 @@ const CMF: KFTea[] = [
       {
         value: 0.9,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.OneTopping,
       },
       {
         value: 0.7,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.TwoorMoreToppings,
       },
     ],
     availability: true,
@@ -50,19 +58,19 @@ const CMF: KFTea[] = [
         value: 180,
         unit: FluidUnit.ml,
         type: Recipe.Standard,
-        note: 'Black Tea'
+        note: 'Black Tea',
       },
       {
         value: 140,
         unit: FluidUnit.ml,
         type: Recipe.OneTopping,
-        note: 'Black Tea'
+        note: 'Black Tea',
       },
       {
         value: 100,
         unit: FluidUnit.ml,
         type: Recipe.TwoorMoreToppings,
-        note: 'Black Tea'
+        note: 'Black Tea',
       },
     ],
     water: [
@@ -91,12 +99,12 @@ const CMF: KFTea[] = [
       {
         value: 0.9,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.OneTopping,
       },
       {
         value: 0.7,
         unit: FluidUnit.honey,
-        type: Recipe.Standard,
+        type: Recipe.TwoorMoreToppings,
       },
     ],
     availability: true,
@@ -105,41 +113,260 @@ const CMF: KFTea[] = [
   {
     name: 'CMF Oolong Tea',
     syrup: null,
-    tea: '300 - 220 - 180 ml',
+    tea: [
+      {
+        value: 300,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+      },
+      {
+        value: 220,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 180,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
     water: null,
-    honey: '1.0 - 0.8 - 0.6',
+    honey: [
+      {
+        value: 1.0,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 0.8,
+        unit: FluidUnit.honey,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 0.6,
+        unit: FluidUnit.honey,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    availability: true,
     note: null,
   },
   {
     name: 'CMF Rose',
-    syrup: '54 - 44 - 34g',
-    tea: '200 - 160 - 120 ml',
+    syrup: [
+      {
+        value: 54,
+        unit: WeightUnit.g,
+        type: Recipe.Standard,
+      },
+      {
+        value: 44,
+        unit: WeightUnit.g,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 34,
+        unit: WeightUnit.g,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    tea: [
+      {
+        value: 200,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+      },
+      {
+        value: 160,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 120,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
     water: null,
     honey: null,
+    availability: true,
     note: null,
   },
   {
     name: 'CMF Mango',
-    syrup: '64 - 54 - 44g',
-    tea: 'Green Tea: 180 - 140 - 100 ml',
+    syrup: [
+      {
+        value: 64,
+        unit: WeightUnit.g,
+        type: Recipe.Standard,
+      },
+      {
+        value: 54,
+        unit: WeightUnit.g,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 44,
+        unit: WeightUnit.g,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    tea: [
+      {
+        value: 180,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+      },
+      {
+        value: 140,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 100,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
     water: null,
-    honey: '0.3 - 0.2 - 0.1',
-    note: null,
+    honey: [
+      {
+        value: 0.3,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 0.2,
+        unit: FluidUnit.honey,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 0.1,
+        unit: FluidUnit.honey,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    availability: true,
+    note: 'Green tea',
   },
   {
     name: 'CMF Chocolate',
-    syrup: '3ts 2ts 1,5ts',
+    syrup: [
+      {
+        value: 3,
+        unit: OtherUnit.ts,
+        type: Recipe.Standard,
+      },
+      {
+        value: 2,
+        unit: OtherUnit.ts,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 1.5,
+        unit: OtherUnit.ts,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
     tea: null,
-    water: '140 - 100 - 80ml (steam)',
-    honey: '0.6 - 0.4 - 0.3',
+    water: [
+      {
+        value: 140,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+        note: 'steam',
+      },
+      {
+        value: 100,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+        note: 'steam',
+      },
+      {
+        value: 80,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+        note: 'steam',
+      },
+    ],
+    honey: [
+      {
+        value: 0.6,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 0.4,
+        unit: FluidUnit.honey,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 0.3,
+        unit: FluidUnit.honey,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    availability: true,
     note: null,
   },
   {
     name: 'CMF Matcha',
-    syrup: 'Match: 34 - 26 - 22g',
+    syrup: [
+      {
+        value: 34,
+        unit: WeightUnit.g,
+        type: Recipe.Standard,
+      },
+      {
+        value: 26,
+        unit: WeightUnit.g,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 22,
+        unit: WeightUnit.g,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
     tea: null,
-    water: '140 - 100 - 80ml (steam)',
-    honey: '0.6 - 0.4 - 0.3',
+    water: [
+      {
+        value: 140,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+        note: 'cold then steam',
+      },
+      {
+        value: 100,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+        note: 'cold then steam',
+      },
+      {
+        value: 80,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+        note: 'cold then steam',
+      },
+    ],
+    honey: [
+      {
+        value: 0.6,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 0.4,
+        unit: FluidUnit.honey,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 0.3,
+        unit: FluidUnit.honey,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    availability: true,
     note: null,
   },
 ];
@@ -148,205 +375,1337 @@ const ORIGINAL: KFTea[] = [
   {
     name: 'Jin Xuan Oolong Tea',
     syrup: null,
-    tea: '360-260-200ml',
+    tea: [
+      {
+        value: 360,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+      },
+      {
+        value: 260,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 200,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
     water: null,
-    honey: '1.2-0.9-0.7',
+    honey: [
+      {
+        value: 1.2,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 0.9,
+        unit: FluidUnit.honey,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 0.7,
+        unit: FluidUnit.honey,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    availability: true,
     note: null,
   },
   {
     name: 'Assam Black Tea',
     syrup: null,
-    tea: '180-140-100ml',
-    water: '100-80-60ml',
-    honey: '1.5-1.2-1.0',
+    tea: [
+      {
+        value: 180,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+        note: 'Black Tea',
+      },
+      {
+        value: 140,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+        note: 'Black Tea',
+      },
+      {
+        value: 100,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+        note: 'Black Tea',
+      },
+    ],
+    water: [
+      {
+        value: 100,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+      },
+      {
+        value: 80,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 60,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    honey: [
+      {
+        value: 1.5,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 1.2,
+        unit: FluidUnit.honey,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 1.0,
+        unit: FluidUnit.honey,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    availability: true,
     note: null,
   },
   {
     name: 'Jasmine Green Tea',
     syrup: null,
-    tea: '280-200-160ml',
+    tea: [
+      {
+        value: 280,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+      },
+      {
+        value: 200,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 160,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
     water: null,
-    honey: '1.4-1.0-0.8',
+    honey: [
+      {
+        value: 1.4,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 1.0,
+        unit: FluidUnit.honey,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 0.8,
+        unit: FluidUnit.honey,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    availability: true,
     note: null,
   },
   {
     name: 'Winter Melon Drink',
     syrup: null,
-    tea: '380 (40ml water)-300-240ml',
+    tea: null,
     water: null,
     honey: null,
-    note: null,
+    availability: false,
+    note: 'tea: 380 (40ml water)-300-240ml',
   },
 ];
 
-const LATTE = [
+const LATTE: KFTea[] = [
   {
     name: 'Pearl Latte with Brown Sugar',
     syrup: null,
-    tea: '300-200ml',
+    tea: null,
+    milk: [
+      {
+        value: 300,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+      },
+      {
+        value: 200,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+      },
+    ],
     water: null,
     honey: null,
+    availability: true,
     note: 'Pearl 180-120',
   },
   {
     name: 'Black Tea Latte',
     syrup: null,
-    tea: '160-120-100ml',
-    milk: '180-140-120',
+    tea: [
+      {
+        value: 160,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+      },
+      {
+        value: 120,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 100,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    milk: [
+      {
+        value: 180,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+      },
+      {
+        value: 140,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 120,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
     water: null,
-    honey: '1.4-1.0-0.8',
+    honey: [
+      {
+        value: 1.4,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 1.0,
+        unit: FluidUnit.honey,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 0.8,
+        unit: FluidUnit.honey,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    availability: true,
     note: 'Can change to green tea or Oolong',
   },
   {
     name: 'Chocolate Latte',
-    syrup: '3ts 2ts 1ts',
+    syrup: [
+      {
+        value: 3,
+        unit: OtherUnit.ts,
+        type: Recipe.Standard,
+      },
+      {
+        value: 2,
+        unit: OtherUnit.ts,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 1,
+        unit: OtherUnit.ts,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
     tea: null,
-    water: '100-80-60',
-    milk: '180-140-120',
-    honey: '0.6-0.4-0.3',
+    water: [
+      {
+        value: 100,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+      },
+      {
+        value: 80,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 60,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    milk: [
+      {
+        value: 180,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+      },
+      {
+        value: 140,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 120,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    honey: [
+      {
+        value: 0.6,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 0.4,
+        unit: FluidUnit.honey,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 0.3,
+        unit: FluidUnit.honey,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    availability: true,
     note: null,
   },
   {
     name: 'Pearl Matcha Latte',
-    syrup: '34-26-22g',
+    syrup: [
+      {
+        value: 34,
+        unit: WeightUnit.g,
+        type: Recipe.Standard,
+      },
+      {
+        value: 26,
+        unit: WeightUnit.g,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 22,
+        unit: WeightUnit.g,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
     tea: null,
-    water: '100-80-60',
-    milk: '180-140-120',
-    honey: '0.6-0.4-0.3',
+    water: [
+      {
+        value: 100,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+      },
+      {
+        value: 80,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 60,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    milk: [
+      {
+        value: 180,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+      },
+      {
+        value: 140,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 120,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    honey: [
+      {
+        value: 0.6,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 0.4,
+        unit: FluidUnit.honey,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 0.3,
+        unit: FluidUnit.honey,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    availability: true,
     note: null,
   },
   {
     name: 'Pearl Taro Latte',
     syrup: null,
     tea: null,
-    water: '60-40ml (if no pearls, add extra 40ml milk)',
-    milk: '140-120ml',
-    honey: '0.3-0.2',
+    water: [
+      {
+        value: 60,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+        note: 'if no pearls, add extra 40ml milk',
+      },
+      {
+        value: 40,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+        note: 'if no pearls, add extra 40ml milk',
+      },
+    ],
+    milk: [
+      {
+        value: 140,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+      },
+      {
+        value: 120,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+      },
+    ],
+    honey: [
+      {
+        value: 0.3,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 0.2,
+        unit: FluidUnit.honey,
+        type: Recipe.OneTopping,
+      },
+    ],
+    availability: true,
     note: 'Pearl + Taro: 100 + 120g 80 _ 90g (if no pearls, Taro: 160-120g)',
   },
 ];
 
-const UNCATEGORIZED = [
+const UNCATEGORIZED: KFTea[] = [
   {
     name: 'Power Taro Pudding Pearl Milk',
     syrup: null,
-    tea: 'Milk: 200ml',
+    tea: null,
+    milk: [
+      {
+        value: 200,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+      },
+    ],
     water: null,
     honey: null,
+    availability: true,
     note: 'Pearl Pudding Taro: 80 + 100 + 160',
   },
   {
     name: 'Taro Sago',
     syrup: null,
-    tea: 'Milk: 200ml',
+    tea: null,
+    milk: [
+      {
+        value: 200,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+      },
+    ],
     water: null,
-    honey: '0.3',
+    honey: [
+      {
+        value: 0.3,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+    ],
+    availability: true,
     note: 'Sago + Taro: 130 - 160g',
   },
   {
     name: 'Rose Oolong Tea',
-    syrup: '72-54-44g',
-    tea: '280-200-160ml',
-    water: 'Hot water: 60-40-20ml',
+    syrup: [
+      {
+        value: 72,
+        unit: WeightUnit.g,
+        type: Recipe.Standard,
+      },
+      {
+        value: 54,
+        unit: WeightUnit.g,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 44,
+        unit: WeightUnit.g,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    tea: [
+      {
+        value: 280,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+        note: 'Olong Tea',
+      },
+      {
+        value: 200,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+        note: 'Olong Tea',
+      },
+      {
+        value: 160,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+        note: 'Olong Tea',
+      },
+    ],
+    water: [
+      {
+        value: 60,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+        note: 'hot',
+      },
+      {
+        value: 40,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+        note: 'hot',
+      },
+      {
+        value: 20,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+        note: 'hot',
+      },
+    ],
     honey: null,
+    availability: true,
     note: null,
   },
   {
     name: 'Grape Fruit Green Tea with Agar BB',
-    syrup: '2-1.5-1oz',
-    tea: 'GT: 200-160-120ml',
+    syrup: [
+      {
+        value: 2,
+        unit: FluidUnit.oz,
+        type: Recipe.Standard,
+      },
+      {
+        value: 1.5,
+        unit: FluidUnit.oz,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 1,
+        unit: FluidUnit.oz,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    tea: [
+      {
+        value: 200,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+        note: 'Green Tea',
+      },
+      {
+        value: 160,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+        note: 'Green Tea',
+      },
+      {
+        value: 120,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+        note: 'Green Tea',
+      },
+    ],
     water: null,
-    honey: '0.3-0.2-0.1',
+    honey: [
+      {
+        value: 0.3,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 0.2,
+        unit: FluidUnit.honey,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 0.1,
+        unit: FluidUnit.honey,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    availability: true,
     note: '1 buoi Agar BB: 100-80g',
   },
   {
     name: 'Winter Melon with Lemon',
-    syrup: 'Lemon: 1.5-1.0-0.5oz',
-    tea: 'Winter Melon: 380-280-200ml',
+    syrup: [
+      {
+        value: 1.5,
+        unit: FluidUnit.oz,
+        type: Recipe.Standard,
+      },
+      {
+        value: 1,
+        unit: FluidUnit.oz,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 0.5,
+        unit: FluidUnit.oz,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    tea: [
+      {
+        value: 380,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+        note: 'Winter Melon Tea',
+      },
+      {
+        value: 280,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+        note: 'Winter Melon Tea',
+      },
+      {
+        value: 200,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+        note: 'Winter Melon Tea',
+      },
+    ],
     water: null,
     honey: null,
+    availability: false,
     note: '1 lime',
   },
   {
     name: 'Honey Lemon with Aloe Vera',
-    syrup: 'Lemon: 1.5-1.0-0.5oz',
-    tea: 'GT: 160-120-100ml',
-    water: '60-40-20ml',
-    honey: '1.6-1.2-1.0',
+    syrup: [
+      {
+        value: 1.5,
+        unit: FluidUnit.oz,
+        type: Recipe.Standard,
+      },
+      {
+        value: 1.0,
+        unit: FluidUnit.oz,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 0.5,
+        unit: FluidUnit.oz,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    tea: [
+      {
+        value: 160,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+        note: 'Green Tea',
+      },
+      {
+        value: 120,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+        note: 'Green Tea',
+      },
+      {
+        value: 100,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+        note: 'Green Tea',
+      },
+    ],
+    water: [
+      {
+        value: 60,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+      },
+      {
+        value: 40,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 20,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    honey: [
+      {
+        value: 1.6,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 1.2,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 1.0,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+    ],
+    availability: true,
     note: 'Aloe Vera: 80-65g',
   },
   {
     name: 'Passion Fruit with Basil Seeds',
-    syrup: 'Passion Fruit: 3-2-1.5oz Basil Seeds: 160-120-80ml',
+    syrup: [
+      {
+        value: 3,
+        unit: FluidUnit.oz,
+        type: Recipe.Standard,
+        note: 'Passion Fruit',
+      },
+      {
+        value: 160,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+        note: 'Basil Seeds',
+      },
+      {
+        value: 2,
+        unit: FluidUnit.oz,
+        type: Recipe.OneTopping,
+        note: 'Passion Fruit',
+      },
+      {
+        value: 120,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+        note: 'Basil Seeds',
+      },
+      {
+        value: 1.5,
+        unit: FluidUnit.oz,
+        type: Recipe.TwoorMoreToppings,
+        note: 'Passion Fruit',
+      },
+      {
+        value: 80,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+        note: 'Basil Seeds',
+      },
+    ],
     tea: null,
-    water: '180-140-100ml',
-    honey: '0.4-0.3-0,2',
+    water: [
+      {
+        value: 180,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+      },
+      {
+        value: 140,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 100,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    honey: [
+      {
+        value: 0.4,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 0.3,
+        unit: FluidUnit.honey,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 0.2,
+        unit: FluidUnit.honey,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    availability: true,
     note: null,
   },
   {
     name: 'Passion Fruit QQ',
-    syrup: '2-1.5-1.0oz',
+    syrup: [
+      {
+        value: 2,
+        unit: FluidUnit.oz,
+        type: Recipe.Standard,
+        note: 'Passion Fruit',
+      },
+      {
+        value: 1.5,
+        unit: FluidUnit.oz,
+        type: Recipe.OneTopping,
+        note: 'Passion Fruit',
+      },
+      {
+        value: 1.0,
+        unit: FluidUnit.oz,
+        type: Recipe.TwoorMoreToppings,
+        note: 'Passion Fruit',
+      },
+    ],
     tea: null,
-    water: '220-160-120ml',
-    honey: '0.3-0.2-0.1',
+    water: [
+      {
+        value: 220,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+      },
+      {
+        value: 160,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 120,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    honey: [
+      {
+        value: 0.3,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 0.2,
+        unit: FluidUnit.honey,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 0.1,
+        unit: FluidUnit.honey,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    availability: true,
     note: 'Pearl/Agar J/Coconut J: 80/50/50 60/40/40',
   },
   {
     name: 'Yakult Green Tea with Aloe Vera',
-    syrup: '2-1.5-1.0oz',
-    tea: 'GT: 220-160-120ml',
+    syrup: [
+      {
+        value: 2,
+        unit: FluidUnit.oz,
+        type: Recipe.Standard,
+      },
+      {
+        value: 1.5,
+        unit: FluidUnit.oz,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 1.0,
+        unit: FluidUnit.oz,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    tea: [
+      {
+        value: 220,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+        note: 'Green Tea',
+      },
+      {
+        value: 160,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+        note: 'Green Tea',
+      },
+      {
+        value: 120,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+        note: 'Green Tea',
+      },
+    ],
     water: null,
-    honey: '1.2-0.9-0.7',
+    honey: [
+      {
+        value: 1.2,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 0.9,
+        unit: FluidUnit.honey,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 0.7,
+        unit: FluidUnit.honey,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    availability: true,
     note: 'Aloe Vera: 80-65g',
   },
   {
     name: 'Pearl Milk Green Tea with Taro',
-    syrup: 'Medium - Small',
-    tea: 'GT: 160-120ml',
+    syrup: [
+      {
+        value: PowderUnit.med,
+        unit: PowderUnit.med,
+        type: Recipe.Standard,
+        note: 'milk powder',
+      },
+      {
+        value: PowderUnit.sm,
+        unit: PowderUnit.sm,
+        type: Recipe.OneTopping,
+        note: 'milk powder',
+      },
+    ],
+    tea: [
+      {
+        value: 160,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+        note: 'Green Tea',
+      },
+      {
+        value: 120,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+        note: 'Green Tea',
+      },
+    ],
     water: null,
-    honey: '0.6-0.4',
+    honey: [
+      {
+        value: 0.4,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 0.6,
+        unit: FluidUnit.honey,
+        type: Recipe.OneTopping,
+      },
+    ],
+    availability: true,
     note: 'Pearl + Taro: 100 + 100g/80 + 80g',
   },
   {
     name: 'Coffe Milk Tea',
-    syrup: 'Large - Medium - Small Coffee: 3.5-3.0-2.5oz',
-    tea: 'BT: 120-100-80ml',
+    syrup: [
+      {
+        value: PowderUnit.lg,
+        unit: PowderUnit.lg,
+        type: Recipe.Standard,
+        note: 'milk powder',
+      },
+      {
+        value: 3.5,
+        unit: FluidUnit.oz,
+        type: Recipe.Standard,
+        note: 'Coffee',
+      },
+      {
+        value: PowderUnit.med,
+        unit: PowderUnit.med,
+        type: Recipe.OneTopping,
+        note: 'milk powder',
+      },
+      {
+        value: 3.0,
+        unit: FluidUnit.oz,
+        type: Recipe.OneTopping,
+        note: 'Coffee',
+      },
+      {
+        value: PowderUnit.sm,
+        unit: PowderUnit.sm,
+        type: Recipe.OneTopping,
+        note: 'milk powder',
+      },
+      {
+        value: 2.5,
+        unit: FluidUnit.oz,
+        type: Recipe.TwoorMoreToppings,
+        note: 'Coffee',
+      },
+    ],
+    tea: [
+      {
+        value: 120,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+        note: 'Black Tea',
+      },
+      {
+        value: 100,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+        note: 'Black Tea',
+      },
+      {
+        value: 80,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+        note: 'Black Tea',
+      },
+    ],
     water: null,
-    honey: '1.2-1.0-0.8',
+    honey: [
+      {
+        value: 1.2,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 1.0,
+        unit: FluidUnit.honey,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 0.8,
+        unit: FluidUnit.honey,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    availability: true,
     note: null,
   },
   {
     name: 'Matcha Milk Tea with Redbean',
-    syrup: 'Matcha: 34-26-22g Milk Powder: Nho -2t.s-1.5t.s',
+    syrup: null,
+    powder: [
+      {
+        value: 34,
+        unit: WeightUnit.g,
+        type: Recipe.Standard,
+        note: 'Matcha',
+      },
+      {
+        value: PowderUnit.sm,
+        unit: PowderUnit.sm,
+        type: Recipe.Standard,
+        note: 'Milk Powder',
+      },
+      {
+        value: 26,
+        unit: WeightUnit.g,
+        type: Recipe.OneTopping,
+        note: 'Matcha',
+      },
+      {
+        value: 2,
+        unit: PowderUnit.ts,
+        type: Recipe.OneTopping,
+        note: 'Milk Powder',
+      },
+      {
+        value: 22,
+        unit: WeightUnit.g,
+        type: Recipe.TwoorMoreToppings,
+        note: 'Matcha',
+      },
+      {
+        value: 1.5,
+        unit: PowderUnit.ts,
+        type: Recipe.TwoorMoreToppings,
+        note: 'Milk Powder',
+      },
+    ],
     tea: null,
-    water: 'Hot water: 140-120-80ml',
-    honey: '0.6-0.4-0.3',
+    water: [
+      {
+        value: 140,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+        note: 'hot',
+      },
+      {
+        value: 120,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+        note: 'hot',
+      },
+      {
+        value: 80,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+        note: 'hot',
+      },
+    ],
+    honey: [
+      {
+        value: 0.6,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 0.4,
+        unit: FluidUnit.honey,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 0.3,
+        unit: FluidUnit.honey,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    availability: true,
     note: 'Red Bean: 80-65g',
   },
 ];
 const FRUIT: KFTea[] = [
   {
     name: 'Signature Lite Fruit Tea',
-    syrup: 'Lite: 2-1.5-1 Basil Seeds: 100-80-60ml',
-    tea: 'Oolong Tea: 140-100-80ml',
-    water: 'Water: 60-40-20ml',
-    honey: '0.5-0.4-0.3',
+    syrup: [
+      {
+        value: 2,
+        unit: FluidUnit.oz,
+        type: Recipe.Standard,
+        note: 'Lite',
+      },
+      {
+        value: 100,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+        note: 'Basil Seeds',
+      },
+      {
+        value: 1.5,
+        unit: FluidUnit.oz,
+        type: Recipe.OneTopping,
+        note: 'Lite',
+      },
+      {
+        value: 80,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+        note: 'Basil Seeds',
+      },
+      {
+        value: 1,
+        unit: FluidUnit.oz,
+        type: Recipe.TwoorMoreToppings,
+        note: 'Lite',
+      },
+      {
+        value: 60,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+        note: 'Basil Seeds',
+      },
+    ],
+    tea: [
+      {
+        value: 140,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+        note: 'Olong Tea',
+      },
+      {
+        value: 100,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+        note: 'Olong Tea',
+      },
+      {
+        value: 80,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+        note: 'Olong Tea',
+      },
+    ],
+    water: [
+      {
+        value: 60,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+      },
+      {
+        value: 40,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 20,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    honey: [
+      {
+        value: 0.5,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 0.4,
+        unit: FluidUnit.honey,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 0.3,
+        unit: FluidUnit.honey,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    availability: true,
     note: '1 Grape F + 3/2 Orange + 3/2 Apple',
   },
   {
     name: 'Mango Fruit Tea',
-    syrup: '86-64-54g',
-    tea: 'GT: 240-180-140ml',
+    syrup: [
+      {
+        value: 86,
+        unit: WeightUnit.g,
+        type: Recipe.Standard,
+      },
+      {
+        value: 64,
+        unit: WeightUnit.g,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 54,
+        unit: WeightUnit.g,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    tea: [
+      {
+        value: 240,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+        note: 'Green Tea',
+      },
+      {
+        value: 180,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+        note: 'Green Tea',
+      },
+      {
+        value: 140,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+        note: 'Green Tea',
+      },
+    ],
     water: null,
-    honey: '0.5-0.3-0.2',
+    honey: [
+      {
+        value: 0.5,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 0.3,
+        unit: FluidUnit.honey,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 0.2,
+        unit: FluidUnit.honey,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    availability: true,
     note: null,
   },
   {
     name: 'Passion Fruit Green Tea',
-    syrup: '2-1.5-1.0oz',
-    tea: 'GT: 240-180-140ml',
+    syrup: [
+      {
+        value: 2,
+        unit: FluidUnit.oz,
+        type: Recipe.Standard,
+      },
+      {
+        value: 1.5,
+        unit: FluidUnit.oz,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 1,
+        unit: FluidUnit.oz,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    tea: [
+      {
+        value: 240,
+        unit: FluidUnit.ml,
+        type: Recipe.Standard,
+        note: 'Green Tea',
+      },
+      {
+        value: 180,
+        unit: FluidUnit.ml,
+        type: Recipe.OneTopping,
+        note: 'Green Tea',
+      },
+      {
+        value: 140,
+        unit: FluidUnit.ml,
+        type: Recipe.TwoorMoreToppings,
+        note: 'Green Tea',
+      },
+    ],
     water: null,
-    honey: '0.8-0.6-0.4',
+    honey: [
+      {
+        value: 0.8,
+        unit: FluidUnit.honey,
+        type: Recipe.Standard,
+      },
+      {
+        value: 0.6,
+        unit: FluidUnit.honey,
+        type: Recipe.OneTopping,
+      },
+      {
+        value: 0.4,
+        unit: FluidUnit.honey,
+        type: Recipe.TwoorMoreToppings,
+      },
+    ],
+    availability: true,
     note: null,
   },
 ];
@@ -368,3 +1727,2234 @@ const MILK_TEA = [
 ];
 
 export const KF_TEA_LIST = CMF.concat(ORIGINAL, LATTE, UNCATEGORIZED, FRUIT);
+
+const CMF_NEW: KFTeaDrink[] = [
+  {
+    name: 'CMF Green Tea',
+    availability: true,
+    note: null,
+    recipes: [
+      {
+        syrup: null,
+        tea: [
+          {
+            value: 240,
+            unit: FluidUnit.ml,
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 1.2,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: null,
+        tea: [
+          {
+            value: 180,
+            unit: FluidUnit.ml,
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.9,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: null,
+        tea: [
+          {
+            value: 140,
+            unit: FluidUnit.ml,
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.7,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'CMF Black Tea',
+    availability: true,
+    note: null,
+    recipes: [
+      {
+        syrup: null,
+        tea: [
+          {
+            value: 180,
+            unit: FluidUnit.ml,
+            note: 'Black Tea',
+          },
+        ],
+        water: [
+          {
+            value: 60,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 1.2,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: null,
+        tea: [
+          {
+            value: 140,
+            unit: FluidUnit.ml,
+            note: 'Black Tea',
+          },
+        ],
+        water: [
+          {
+            value: 40,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 0.9,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: null,
+        tea: [
+          {
+            value: 100,
+            unit: FluidUnit.ml,
+            note: 'Black Tea',
+          },
+        ],
+        water: [
+          {
+            value: 20,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 0.7,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'CMF Oolong Tea',
+    availability: true,
+    note: null,
+    recipes: [
+      {
+        syrup: null,
+        tea: [
+          {
+            value: 300,
+            unit: FluidUnit.ml,
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 1,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: null,
+        tea: [
+          {
+            value: 220,
+            unit: FluidUnit.ml,
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.8,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: null,
+        tea: [
+          {
+            value: 180,
+            unit: FluidUnit.ml,
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.6,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'CMF Rose',
+    availability: true,
+    note: null,
+    recipes: [
+      {
+        syrup: [
+          {
+            value: 54,
+            unit: WeightUnit.g,
+          },
+        ],
+        tea: [
+          {
+            value: 200,
+            unit: FluidUnit.ml,
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: null,
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 44,
+            unit: WeightUnit.g,
+          },
+        ],
+        tea: [
+          {
+            value: 160,
+            unit: FluidUnit.ml,
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: null,
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 34,
+            unit: WeightUnit.g,
+          },
+        ],
+        tea: [
+          {
+            value: 120,
+            unit: FluidUnit.ml,
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: null,
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'CMF Mango',
+    availability: true,
+    note: 'Green tea',
+    recipes: [
+      {
+        syrup: [
+          {
+            value: 64,
+            unit: WeightUnit.g,
+          },
+        ],
+        tea: [
+          {
+            value: 180,
+            unit: FluidUnit.ml,
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.3,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 54,
+            unit: WeightUnit.g,
+          },
+        ],
+        tea: [
+          {
+            value: 140,
+            unit: FluidUnit.ml,
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.2,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 44,
+            unit: WeightUnit.g,
+          },
+        ],
+        tea: [
+          {
+            value: 100,
+            unit: FluidUnit.ml,
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.1,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'CMF Chocolate',
+    availability: true,
+    note: null,
+    recipes: [
+      {
+        syrup: [
+          {
+            value: 3,
+            unit: PowderUnit.ts,
+          },
+        ],
+        tea: null,
+        water: [
+          {
+            value: 140,
+            unit: FluidUnit.ml,
+            note: 'steam',
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 0.6,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 2,
+            unit: PowderUnit.ts,
+          },
+        ],
+        tea: null,
+        water: [
+          {
+            value: 100,
+            unit: FluidUnit.ml,
+            note: 'steam',
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 0.4,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 1.5,
+            unit: PowderUnit.ts,
+          },
+        ],
+        tea: null,
+        water: [
+          {
+            value: 80,
+            unit: FluidUnit.ml,
+            note: 'steam',
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 0.3,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'CMF Matcha',
+    availability: true,
+    note: null,
+    recipes: [
+      {
+        syrup: [
+          {
+            value: 34,
+            unit: WeightUnit.g,
+          },
+        ],
+        tea: null,
+        water: [
+          {
+            value: 140,
+            unit: FluidUnit.ml,
+            note: 'cold then steam',
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 0.6,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 26,
+            unit: WeightUnit.g,
+          },
+        ],
+        tea: null,
+        water: [
+          {
+            value: 100,
+            unit: FluidUnit.ml,
+            note: 'cold then steam',
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 0.4,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 22,
+            unit: WeightUnit.g,
+          },
+        ],
+        tea: null,
+        water: [
+          {
+            value: 80,
+            unit: FluidUnit.ml,
+            note: 'cold then steam',
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 0.3,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+    ],
+  },
+];
+const ORIGINAL_NEW: KFTeaDrink[] = [
+  {
+    name: 'Jin Xuan Oolong Tea',
+    availability: true,
+    note: null,
+    recipes: [
+      {
+        syrup: null,
+        tea: [
+          {
+            value: 360,
+            unit: FluidUnit.ml,
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 1.2,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: null,
+        tea: [
+          {
+            value: 260,
+            unit: FluidUnit.ml,
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.9,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: null,
+        tea: [
+          {
+            value: 200,
+            unit: FluidUnit.ml,
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.7,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'Assam Black Tea',
+    availability: true,
+    note: null,
+    recipes: [
+      {
+        syrup: null,
+        tea: [
+          {
+            value: 180,
+            unit: FluidUnit.ml,
+            note: 'Black Tea',
+          },
+        ],
+        water: [
+          {
+            value: 100,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 1.5,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: null,
+        tea: [
+          {
+            value: 140,
+            unit: FluidUnit.ml,
+            note: 'Black Tea',
+          },
+        ],
+        water: [
+          {
+            value: 80,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 1.2,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: null,
+        tea: [
+          {
+            value: 100,
+            unit: FluidUnit.ml,
+            note: 'Black Tea',
+          },
+        ],
+        water: [
+          {
+            value: 60,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 1,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'Jasmine Green Tea',
+    availability: true,
+    note: null,
+    recipes: [
+      {
+        syrup: null,
+        tea: [
+          {
+            value: 280,
+            unit: FluidUnit.ml,
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 1.4,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: null,
+        tea: [
+          {
+            value: 200,
+            unit: FluidUnit.ml,
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 1,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: null,
+        tea: [
+          {
+            value: 160,
+            unit: FluidUnit.ml,
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.8,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'Winter Melon Drink',
+    availability: false,
+    note: 'tea: 380 (40ml water)-300-240ml',
+    recipes: [
+      {
+        syrup: null,
+        tea: null,
+        water: null,
+        milk: null,
+        honey: null,
+        powder: null,
+      },
+      {
+        syrup: null,
+        tea: null,
+        water: null,
+        milk: null,
+        honey: null,
+        powder: null,
+      },
+      {
+        syrup: null,
+        tea: null,
+        water: null,
+        milk: null,
+        honey: null,
+        powder: null,
+      },
+    ],
+  },
+];
+const LATTE_NEW: KFTeaDrink[] = [
+  {
+    name: 'Pearl Latte with Brown Sugar',
+    availability: true,
+    note: 'Pearl 180-120',
+    recipes: [
+      {
+        syrup: null,
+        tea: null,
+        water: null,
+        milk: [
+          {
+            value: 300,
+            unit: FluidUnit.ml,
+          },
+        ],
+        honey: null,
+        powder: null,
+      },
+      {
+        syrup: null,
+        tea: null,
+        water: null,
+        milk: [
+          {
+            value: 200,
+            unit: FluidUnit.ml,
+          },
+        ],
+        honey: null,
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'Black Tea Latte',
+    availability: true,
+    note: 'Can change to green tea or Oolong',
+    recipes: [
+      {
+        syrup: null,
+        tea: [
+          {
+            value: 160,
+            unit: FluidUnit.ml,
+          },
+        ],
+        water: null,
+        milk: [
+          {
+            value: 180,
+            unit: FluidUnit.ml,
+          },
+        ],
+        honey: [
+          {
+            value: 1.4,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: null,
+        tea: [
+          {
+            value: 120,
+            unit: FluidUnit.ml,
+          },
+        ],
+        water: null,
+        milk: [
+          {
+            value: 140,
+            unit: FluidUnit.ml,
+          },
+        ],
+        honey: [
+          {
+            value: 1,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: null,
+        tea: [
+          {
+            value: 100,
+            unit: FluidUnit.ml,
+          },
+        ],
+        water: null,
+        milk: [
+          {
+            value: 120,
+            unit: FluidUnit.ml,
+          },
+        ],
+        honey: [
+          {
+            value: 0.8,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'Chocolate Latte',
+    availability: true,
+    note: null,
+    recipes: [
+      {
+        syrup: [
+          {
+            value: 3,
+            unit: PowderUnit.ts,
+          },
+        ],
+        tea: null,
+        water: [
+          {
+            value: 100,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: [
+          {
+            value: 180,
+            unit: FluidUnit.ml,
+          },
+        ],
+        honey: [
+          {
+            value: 0.6,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 2,
+            unit: PowderUnit.ts,
+          },
+        ],
+        tea: null,
+        water: [
+          {
+            value: 80,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: [
+          {
+            value: 140,
+            unit: FluidUnit.ml,
+          },
+        ],
+        honey: [
+          {
+            value: 0.4,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 1,
+            unit: PowderUnit.ts,
+          },
+        ],
+        tea: null,
+        water: [
+          {
+            value: 60,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: [
+          {
+            value: 120,
+            unit: FluidUnit.ml,
+          },
+        ],
+        honey: [
+          {
+            value: 0.3,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'Pearl Matcha Latte',
+    availability: true,
+    note: null,
+    recipes: [
+      {
+        syrup: [
+          {
+            value: 34,
+            unit: WeightUnit.g,
+          },
+        ],
+        tea: null,
+        water: [
+          {
+            value: 100,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: [
+          {
+            value: 180,
+            unit: FluidUnit.ml,
+          },
+        ],
+        honey: [
+          {
+            value: 0.6,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 26,
+            unit: WeightUnit.g,
+          },
+        ],
+        tea: null,
+        water: [
+          {
+            value: 80,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: [
+          {
+            value: 140,
+            unit: FluidUnit.ml,
+          },
+        ],
+        honey: [
+          {
+            value: 0.4,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 22,
+            unit: WeightUnit.g,
+          },
+        ],
+        tea: null,
+        water: [
+          {
+            value: 60,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: [
+          {
+            value: 120,
+            unit: FluidUnit.ml,
+          },
+        ],
+        honey: [
+          {
+            value: 0.3,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'Pearl Taro Latte',
+    availability: true,
+    note: 'Pearl + Taro: 100 + 120g 80 _ 90g (if no pearls, Taro: 160-120g)',
+    recipes: [
+      {
+        syrup: null,
+        tea: null,
+        water: [
+          {
+            value: 60,
+            unit: FluidUnit.ml,
+            note: 'if no pearls, add extra 40ml milk',
+          },
+        ],
+        milk: [
+          {
+            value: 140,
+            unit: FluidUnit.ml,
+          },
+        ],
+        honey: [
+          {
+            value: 0.3,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: null,
+        tea: null,
+        water: [
+          {
+            value: 40,
+            unit: FluidUnit.ml,
+            note: 'if no pearls, add extra 40ml milk',
+          },
+        ],
+        milk: [
+          {
+            value: 120,
+            unit: FluidUnit.ml,
+          },
+        ],
+        honey: [
+          {
+            value: 0.2,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+    ],
+  },
+];
+const UNCATEGORIZED_NEW: KFTeaDrink[] = [
+  {
+    name: 'Power Taro Pudding Pearl Milk',
+    availability: true,
+    note: 'Pearl Pudding Taro: 80 + 100 + 160',
+    recipes: [
+      {
+        syrup: null,
+        tea: null,
+        water: null,
+        milk: [
+          {
+            value: 200,
+            unit: FluidUnit.ml,
+          },
+        ],
+        honey: null,
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'Taro Sago',
+    availability: true,
+    note: 'Sago + Taro: 130 - 160g',
+    recipes: [
+      {
+        syrup: null,
+        tea: null,
+        water: null,
+        milk: [
+          {
+            value: 200,
+            unit: FluidUnit.ml,
+          },
+        ],
+        honey: [
+          {
+            value: 0.3,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'Rose Oolong Tea',
+    availability: true,
+    note: null,
+    recipes: [
+      {
+        syrup: [
+          {
+            value: 72,
+            unit: WeightUnit.g,
+          },
+        ],
+        tea: [
+          {
+            value: 280,
+            unit: FluidUnit.ml,
+            note: 'Olong Tea',
+          },
+        ],
+        water: [
+          {
+            value: 60,
+            unit: FluidUnit.ml,
+            note: 'hot',
+          },
+        ],
+        milk: null,
+        honey: null,
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 54,
+            unit: WeightUnit.g,
+          },
+        ],
+        tea: [
+          {
+            value: 200,
+            unit: FluidUnit.ml,
+            note: 'Olong Tea',
+          },
+        ],
+        water: [
+          {
+            value: 40,
+            unit: FluidUnit.ml,
+            note: 'hot',
+          },
+        ],
+        milk: null,
+        honey: null,
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 44,
+            unit: WeightUnit.g,
+          },
+        ],
+        tea: [
+          {
+            value: 160,
+            unit: FluidUnit.ml,
+            note: 'Olong Tea',
+          },
+        ],
+        water: [
+          {
+            value: 20,
+            unit: FluidUnit.ml,
+            note: 'hot',
+          },
+        ],
+        milk: null,
+        honey: null,
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'Grape Fruit Green Tea with Agar BB',
+    availability: true,
+    note: '1 buoi Agar BB: 100-80g',
+    recipes: [
+      {
+        syrup: [
+          {
+            value: 2,
+            unit: FluidUnit.oz,
+          },
+        ],
+        tea: [
+          {
+            value: 200,
+            unit: FluidUnit.ml,
+            note: 'Green Tea',
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.3,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 1.5,
+            unit: FluidUnit.oz,
+          },
+        ],
+        tea: [
+          {
+            value: 160,
+            unit: FluidUnit.ml,
+            note: 'Green Tea',
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.2,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 1,
+            unit: FluidUnit.oz,
+          },
+        ],
+        tea: [
+          {
+            value: 120,
+            unit: FluidUnit.ml,
+            note: 'Green Tea',
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.1,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'Winter Melon with Lemon',
+    availability: false,
+    note: '1 lime',
+    recipes: [
+      {
+        syrup: [
+          {
+            value: 1.5,
+            unit: FluidUnit.oz,
+          },
+        ],
+        tea: [
+          {
+            value: 380,
+            unit: FluidUnit.ml,
+            note: 'Winter Melon Tea',
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: null,
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 1,
+            unit: FluidUnit.oz,
+          },
+        ],
+        tea: [
+          {
+            value: 280,
+            unit: FluidUnit.ml,
+            note: 'Winter Melon Tea',
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: null,
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 0.5,
+            unit: FluidUnit.oz,
+          },
+        ],
+        tea: [
+          {
+            value: 200,
+            unit: FluidUnit.ml,
+            note: 'Winter Melon Tea',
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: null,
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'Honey Lemon with Aloe Vera',
+    availability: true,
+    note: 'Aloe Vera: 80-65g',
+    recipes: [
+      {
+        syrup: [
+          {
+            value: 1.5,
+            unit: FluidUnit.oz,
+          },
+        ],
+        tea: [
+          {
+            value: 160,
+            unit: FluidUnit.ml,
+            note: 'Green Tea',
+          },
+        ],
+        water: [
+          {
+            value: 60,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 1.6,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 1,
+            unit: FluidUnit.oz,
+          },
+        ],
+        tea: [
+          {
+            value: 120,
+            unit: FluidUnit.ml,
+            note: 'Green Tea',
+          },
+        ],
+        water: [
+          {
+            value: 40,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 1.2,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 0.5,
+            unit: FluidUnit.oz,
+          },
+        ],
+        tea: [
+          {
+            value: 100,
+            unit: FluidUnit.ml,
+            note: 'Green Tea',
+          },
+        ],
+        water: [
+          {
+            value: 20,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 1,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'Passion Fruit with Basil Seeds',
+    availability: true,
+    note: null,
+    recipes: [
+      {
+        syrup: [
+          {
+            value: 3,
+            unit: FluidUnit.oz,
+            note: 'Passion Fruit',
+          },
+          {
+            value: 160,
+            unit: FluidUnit.ml,
+            note: 'Basil Seeds',
+          },
+        ],
+        tea: null,
+        water: [
+          {
+            value: 180,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 0.4,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 2,
+            unit: FluidUnit.oz,
+            note: 'Passion Fruit',
+          },
+          {
+            value: 120,
+            unit: FluidUnit.ml,
+            note: 'Basil Seeds',
+          },
+        ],
+        tea: null,
+        water: [
+          {
+            value: 140,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 0.3,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 1.5,
+            unit: FluidUnit.oz,
+            note: 'Passion Fruit',
+          },
+          {
+            value: 80,
+            unit: FluidUnit.ml,
+            note: 'Basil Seeds',
+          },
+        ],
+        tea: null,
+        water: [
+          {
+            value: 100,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 0.2,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'Passion Fruit QQ',
+    availability: true,
+    note: 'Pearl/Agar J/Coconut J: 80/50/50 60/40/40',
+    recipes: [
+      {
+        syrup: [
+          {
+            value: 2,
+            unit: FluidUnit.oz,
+            note: 'Passion Fruit',
+          },
+        ],
+        tea: null,
+        water: [
+          {
+            value: 220,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 0.3,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 1.5,
+            unit: FluidUnit.oz,
+            note: 'Passion Fruit',
+          },
+        ],
+        tea: null,
+        water: [
+          {
+            value: 160,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 0.2,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 1,
+            unit: FluidUnit.oz,
+            note: 'Passion Fruit',
+          },
+        ],
+        tea: null,
+        water: [
+          {
+            value: 120,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 0.1,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'Yakult Green Tea with Aloe Vera',
+    availability: true,
+    note: 'Aloe Vera: 80-65g',
+    recipes: [
+      {
+        syrup: [
+          {
+            value: 2,
+            unit: FluidUnit.oz,
+          },
+        ],
+        tea: [
+          {
+            value: 220,
+            unit: FluidUnit.ml,
+            note: 'Green Tea',
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 1.2,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 1.5,
+            unit: FluidUnit.oz,
+          },
+        ],
+        tea: [
+          {
+            value: 160,
+            unit: FluidUnit.ml,
+            note: 'Green Tea',
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.9,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 1,
+            unit: FluidUnit.oz,
+          },
+        ],
+        tea: [
+          {
+            value: 120,
+            unit: FluidUnit.ml,
+            note: 'Green Tea',
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.7,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'Pearl Milk Green Tea with Taro',
+    availability: true,
+    note: 'Pearl + Taro: 100 + 100g/80 + 80g',
+    recipes: [
+      {
+        syrup: null,
+        tea: [
+          {
+            value: 160,
+            unit: FluidUnit.ml,
+            note: 'Green Tea',
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.4,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: [
+          {
+            value: PowderUnit.med,
+            unit: PowderUnit.med,
+            note: 'milk powder',
+          },
+        ],
+      },
+      {
+        syrup: [
+          {
+            value: PowderUnit.sm,
+            unit: PowderUnit.sm,
+            note: 'milk powder',
+          },
+        ],
+        tea: [
+          {
+            value: 120,
+            unit: FluidUnit.ml,
+            note: 'Green Tea',
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.6,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'Coffe Milk Tea',
+    availability: true,
+    note: null,
+    recipes: [
+      {
+        syrup: [
+          {
+            value: 3.5,
+            unit: FluidUnit.oz,
+            note: 'Coffee',
+          },
+        ],
+        tea: [
+          {
+            value: 120,
+            unit: FluidUnit.ml,
+            note: 'Black Tea',
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 1.2,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: [
+          {
+            value: 'large',
+            unit: PowderUnit.lg,
+            note: 'milk powder',
+          },
+        ],
+      },
+      {
+        syrup: [
+          {
+            value: 3,
+            unit: FluidUnit.oz,
+            note: 'Coffee',
+          },
+        ],
+        tea: [
+          {
+            value: 100,
+            unit: FluidUnit.ml,
+            note: 'Black Tea',
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 1,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: [
+          {
+            value: PowderUnit.med,
+            unit: PowderUnit.med,
+            note: 'milk powder',
+          },
+        ],
+      },
+      {
+        syrup: [
+          {
+            value: 2.5,
+            unit: FluidUnit.oz,
+            note: 'Coffee',
+          },
+        ],
+        tea: [
+          {
+            value: 80,
+            unit: FluidUnit.ml,
+            note: 'Black Tea',
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.8,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: [
+          {
+            value: PowderUnit.sm,
+            unit: PowderUnit.sm,
+            note: 'milk powder',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Matcha Milk Tea with Redbean',
+    availability: true,
+    note: 'Red Bean: 80-65g',
+    recipes: [
+      {
+        syrup: null,
+        tea: null,
+        water: [
+          {
+            value: 140,
+            unit: FluidUnit.ml,
+            note: 'hot',
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 0.6,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: [
+          {
+            value: 34,
+            unit: WeightUnit.g,
+            note: 'Matcha',
+          },
+          {
+            value: PowderUnit.sm,
+            unit: PowderUnit.sm,
+            note: 'Milk Powder',
+          },
+        ],
+      },
+      {
+        syrup: null,
+        tea: null,
+        water: [
+          {
+            value: 120,
+            unit: FluidUnit.ml,
+            note: 'hot',
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 0.4,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: [
+          {
+            value: 26,
+            unit: WeightUnit.g,
+            note: 'Matcha',
+          },
+          {
+            value: 2,
+            unit: PowderUnit.ts,
+            note: 'Milk Powder',
+          },
+        ],
+      },
+      {
+        syrup: null,
+        tea: null,
+        water: [
+          {
+            value: 80,
+            unit: FluidUnit.ml,
+            note: 'hot',
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 0.3,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: [
+          {
+            value: 22,
+            unit: WeightUnit.g,
+            note: 'Matcha',
+          },
+          {
+            value: 1.5,
+            unit: PowderUnit.ts,
+            note: 'Milk Powder',
+          },
+        ],
+      },
+    ],
+  },
+];
+const FRUIT_NEW: KFTeaDrink[] = [
+  {
+    name: 'Signature Lite Fruit Tea',
+    availability: true,
+    note: '1 Grape F + 3/2 Orange + 3/2 Apple',
+    recipes: [
+      {
+        syrup: [
+          {
+            value: 2,
+            unit: FluidUnit.oz,
+            note: 'Lite',
+          },
+          {
+            value: 100,
+            unit: FluidUnit.ml,
+            note: 'Basil Seeds',
+          },
+        ],
+        tea: [
+          {
+            value: 140,
+            unit: FluidUnit.ml,
+            note: 'Olong Tea',
+          },
+        ],
+        water: [
+          {
+            value: 60,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 0.5,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 1.5,
+            unit: FluidUnit.oz,
+            note: 'Lite',
+          },
+          {
+            value: 80,
+            unit: FluidUnit.ml,
+            note: 'Basil Seeds',
+          },
+        ],
+        tea: [
+          {
+            value: 100,
+            unit: FluidUnit.ml,
+            note: 'Olong Tea',
+          },
+        ],
+        water: [
+          {
+            value: 40,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 0.4,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 1,
+            unit: FluidUnit.oz,
+            note: 'Lite',
+          },
+          {
+            value: 60,
+            unit: FluidUnit.ml,
+            note: 'Basil Seeds',
+          },
+        ],
+        tea: [
+          {
+            value: 80,
+            unit: FluidUnit.ml,
+            note: 'Olong Tea',
+          },
+        ],
+        water: [
+          {
+            value: 20,
+            unit: FluidUnit.ml,
+          },
+        ],
+        milk: null,
+        honey: [
+          {
+            value: 0.3,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'Mango Fruit Tea',
+    availability: true,
+    note: null,
+    recipes: [
+      {
+        syrup: [
+          {
+            value: 86,
+            unit: WeightUnit.g,
+          },
+        ],
+        tea: [
+          {
+            value: 240,
+            unit: FluidUnit.ml,
+            note: 'Green Tea',
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.5,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 64,
+            unit: WeightUnit.g,
+          },
+        ],
+        tea: [
+          {
+            value: 180,
+            unit: FluidUnit.ml,
+            note: 'Green Tea',
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.3,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 54,
+            unit: WeightUnit.g,
+          },
+        ],
+        tea: [
+          {
+            value: 140,
+            unit: FluidUnit.ml,
+            note: 'Green Tea',
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.2,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+    ],
+  },
+  {
+    name: 'Passion Fruit Green Tea',
+    availability: true,
+    note: null,
+    recipes: [
+      {
+        syrup: [
+          {
+            value: 2,
+            unit: FluidUnit.oz,
+          },
+        ],
+        tea: [
+          {
+            value: 240,
+            unit: FluidUnit.ml,
+            note: 'Green Tea',
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.8,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 1.5,
+            unit: FluidUnit.oz,
+          },
+        ],
+        tea: [
+          {
+            value: 180,
+            unit: FluidUnit.ml,
+            note: 'Green Tea',
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.6,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+      {
+        syrup: [
+          {
+            value: 1,
+            unit: FluidUnit.oz,
+          },
+        ],
+        tea: [
+          {
+            value: 140,
+            unit: FluidUnit.ml,
+            note: 'Green Tea',
+          },
+        ],
+        water: null,
+        milk: null,
+        honey: [
+          {
+            value: 0.4,
+            unit: FluidUnit.honey,
+          },
+        ],
+        powder: null,
+      },
+    ],
+  },
+];
+export const KF_TEA_LIST_NEW = CMF_NEW.concat(
+  ORIGINAL_NEW,
+  LATTE_NEW,
+  UNCATEGORIZED_NEW,
+  FRUIT_NEW
+);
