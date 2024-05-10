@@ -8,176 +8,56 @@ import {
 	Recipe,
 } from './interface/types';
 
-const CMF: KFTea[] = [
+const LATTE: KFTea[] = [
 	{
-		name: 'CMF Green Tea',
+		name: 'Pearl Latte with Brown Sugar',
 		syrup: null,
-		tea: [
-			{
-				value: 240,
-				unit: FluidUnit.ml,
-				type: Recipe.Standard,
-			},
-			{
-				value: 180,
-				unit: FluidUnit.ml,
-				type: Recipe.OneTopping,
-			},
-			{
-				value: 140,
-				unit: FluidUnit.ml,
-				type: Recipe.TwoorMoreToppings,
-			},
-		],
-		water: null,
-		honey: [
-			{
-				value: 1.2,
-				unit: FluidUnit.honey,
-				type: Recipe.Standard,
-			},
-			{
-				value: 0.9,
-				unit: FluidUnit.honey,
-				type: Recipe.OneTopping,
-			},
-			{
-				value: 0.7,
-				unit: FluidUnit.honey,
-				type: Recipe.TwoorMoreToppings,
-			},
-		],
-		availability: true,
-		note: null,
-	},
-	{
-		name: 'CMF Black Tea',
-		syrup: null,
-		tea: [
-			{
-				value: 180,
-				unit: FluidUnit.ml,
-				type: Recipe.Standard,
-				note: 'Black Tea',
-			},
-			{
-				value: 140,
-				unit: FluidUnit.ml,
-				type: Recipe.OneTopping,
-				note: 'Black Tea',
-			},
-			{
-				value: 100,
-				unit: FluidUnit.ml,
-				type: Recipe.TwoorMoreToppings,
-				note: 'Black Tea',
-			},
-		],
-		water: [
-			{
-				value: 60,
-				unit: FluidUnit.ml,
-				type: Recipe.Standard,
-			},
-			{
-				value: 40,
-				unit: FluidUnit.ml,
-				type: Recipe.OneTopping,
-			},
-			{
-				value: 20,
-				unit: FluidUnit.ml,
-				type: Recipe.TwoorMoreToppings,
-			},
-		],
-		honey: [
-			{
-				value: 1.2,
-				unit: FluidUnit.honey,
-				type: Recipe.Standard,
-			},
-			{
-				value: 0.9,
-				unit: FluidUnit.honey,
-				type: Recipe.OneTopping,
-			},
-			{
-				value: 0.7,
-				unit: FluidUnit.honey,
-				type: Recipe.TwoorMoreToppings,
-			},
-		],
-		availability: true,
-		note: null,
-	},
-	{
-		name: 'CMF Oolong Tea',
-		syrup: null,
-		tea: [
+		tea: null,
+		milk: [
 			{
 				value: 300,
 				unit: FluidUnit.ml,
 				type: Recipe.Standard,
 			},
 			{
-				value: 220,
+				value: 200,
 				unit: FluidUnit.ml,
 				type: Recipe.OneTopping,
-			},
-			{
-				value: 180,
-				unit: FluidUnit.ml,
-				type: Recipe.TwoorMoreToppings,
 			},
 		],
 		water: null,
-		honey: [
-			{
-				value: 1.0,
-				unit: FluidUnit.honey,
-				type: Recipe.Standard,
-			},
-			{
-				value: 0.8,
-				unit: FluidUnit.honey,
-				type: Recipe.OneTopping,
-			},
-			{
-				value: 0.6,
-				unit: FluidUnit.honey,
-				type: Recipe.TwoorMoreToppings,
-			},
-		],
+		honey: null,
 		availability: true,
-		note: null,
+		note: 'Pearl 180-120',
 	},
 	{
-		name: 'CMF Rose',
-		syrup: [
-			{
-				value: 54,
-				unit: WeightUnit.g,
-				type: Recipe.Standard,
-			},
-			{
-				value: 44,
-				unit: WeightUnit.g,
-				type: Recipe.OneTopping,
-			},
-			{
-				value: 34,
-				unit: WeightUnit.g,
-				type: Recipe.TwoorMoreToppings,
-			},
-		],
+		name: 'Black Tea Latte',
+		syrup: null,
 		tea: [
 			{
-				value: 200,
+				value: 160,
 				unit: FluidUnit.ml,
 				type: Recipe.Standard,
 			},
 			{
-				value: 160,
+				value: 120,
+				unit: FluidUnit.ml,
+				type: Recipe.OneTopping,
+			},
+			{
+				value: 100,
+				unit: FluidUnit.ml,
+				type: Recipe.TwoorMoreToppings,
+			},
+		],
+		milk: [
+			{
+				value: 180,
+				unit: FluidUnit.ml,
+				type: Recipe.Standard,
+			},
+			{
+				value: 140,
 				unit: FluidUnit.ml,
 				type: Recipe.OneTopping,
 			},
@@ -188,69 +68,28 @@ const CMF: KFTea[] = [
 			},
 		],
 		water: null,
-		honey: null,
-		availability: true,
-		note: null,
-	},
-	{
-		name: 'CMF Mango',
-		syrup: [
-			{
-				value: 64,
-				unit: WeightUnit.g,
-				type: Recipe.Standard,
-			},
-			{
-				value: 54,
-				unit: WeightUnit.g,
-				type: Recipe.OneTopping,
-			},
-			{
-				value: 44,
-				unit: WeightUnit.g,
-				type: Recipe.TwoorMoreToppings,
-			},
-		],
-		tea: [
-			{
-				value: 180,
-				unit: FluidUnit.ml,
-				type: Recipe.Standard,
-			},
-			{
-				value: 140,
-				unit: FluidUnit.ml,
-				type: Recipe.OneTopping,
-			},
-			{
-				value: 100,
-				unit: FluidUnit.ml,
-				type: Recipe.TwoorMoreToppings,
-			},
-		],
-		water: null,
 		honey: [
 			{
-				value: 0.3,
+				value: 1.4,
 				unit: FluidUnit.honey,
 				type: Recipe.Standard,
 			},
 			{
-				value: 0.2,
+				value: 1.0,
 				unit: FluidUnit.honey,
 				type: Recipe.OneTopping,
 			},
 			{
-				value: 0.1,
+				value: 0.8,
 				unit: FluidUnit.honey,
 				type: Recipe.TwoorMoreToppings,
 			},
 		],
 		availability: true,
-		note: 'Green tea',
+		note: 'Can change to green tea or Oolong',
 	},
 	{
-		name: 'CMF Chocolate',
+		name: 'Chocolate Latte',
 		syrup: [
 			{
 				value: 3,
@@ -263,7 +102,7 @@ const CMF: KFTea[] = [
 				type: Recipe.OneTopping,
 			},
 			{
-				value: 1.5,
+				value: 1,
 				unit: OtherUnit.ts,
 				type: Recipe.TwoorMoreToppings,
 			},
@@ -271,22 +110,36 @@ const CMF: KFTea[] = [
 		tea: null,
 		water: [
 			{
-				value: 140,
-				unit: FluidUnit.ml,
-				type: Recipe.Standard,
-				note: 'steam',
-			},
-			{
 				value: 100,
 				unit: FluidUnit.ml,
-				type: Recipe.OneTopping,
-				note: 'steam',
+				type: Recipe.Standard,
 			},
 			{
 				value: 80,
 				unit: FluidUnit.ml,
+				type: Recipe.OneTopping,
+			},
+			{
+				value: 60,
+				unit: FluidUnit.ml,
 				type: Recipe.TwoorMoreToppings,
-				note: 'steam',
+			},
+		],
+		milk: [
+			{
+				value: 180,
+				unit: FluidUnit.ml,
+				type: Recipe.Standard,
+			},
+			{
+				value: 140,
+				unit: FluidUnit.ml,
+				type: Recipe.OneTopping,
+			},
+			{
+				value: 120,
+				unit: FluidUnit.ml,
+				type: Recipe.TwoorMoreToppings,
 			},
 		],
 		honey: [
@@ -310,7 +163,7 @@ const CMF: KFTea[] = [
 		note: null,
 	},
 	{
-		name: 'CMF Matcha',
+		name: 'Pearl Matcha Latte',
 		syrup: [
 			{
 				value: 34,
@@ -331,22 +184,36 @@ const CMF: KFTea[] = [
 		tea: null,
 		water: [
 			{
-				value: 140,
-				unit: FluidUnit.ml,
-				type: Recipe.Standard,
-				note: 'cold then steam',
-			},
-			{
 				value: 100,
 				unit: FluidUnit.ml,
-				type: Recipe.OneTopping,
-				note: 'cold then steam',
+				type: Recipe.Standard,
 			},
 			{
 				value: 80,
 				unit: FluidUnit.ml,
+				type: Recipe.OneTopping,
+			},
+			{
+				value: 60,
+				unit: FluidUnit.ml,
 				type: Recipe.TwoorMoreToppings,
-				note: 'cold then steam',
+			},
+		],
+		milk: [
+			{
+				value: 180,
+				unit: FluidUnit.ml,
+				type: Recipe.Standard,
+			},
+			{
+				value: 140,
+				unit: FluidUnit.ml,
+				type: Recipe.OneTopping,
+			},
+			{
+				value: 120,
+				unit: FluidUnit.ml,
+				type: Recipe.TwoorMoreToppings,
 			},
 		],
 		honey: [
@@ -369,6 +236,51 @@ const CMF: KFTea[] = [
 		availability: true,
 		note: null,
 	},
+	{
+		name: 'Pearl Taro Latte',
+		syrup: null,
+		tea: null,
+		water: [
+			{
+				value: 60,
+				unit: FluidUnit.ml,
+				type: Recipe.Standard,
+				note: 'if no pearls, add extra 40ml milk',
+			},
+			{
+				value: 40,
+				unit: FluidUnit.ml,
+				type: Recipe.OneTopping,
+				note: 'if no pearls, add extra 40ml milk',
+			},
+		],
+		milk: [
+			{
+				value: 140,
+				unit: FluidUnit.ml,
+				type: Recipe.Standard,
+			},
+			{
+				value: 120,
+				unit: FluidUnit.ml,
+				type: Recipe.OneTopping,
+			},
+		],
+		honey: [
+			{
+				value: 0.3,
+				unit: FluidUnit.honey,
+				type: Recipe.Standard,
+			},
+			{
+				value: 0.2,
+				unit: FluidUnit.honey,
+				type: Recipe.OneTopping,
+			},
+		],
+		availability: true,
+		note: 'Pearl + Taro: 100 + 120g 80 _ 90g (if no pearls, Taro: 160-120g)',
+	},
 ];
 
-export default CMF;
+export default LATTE;
