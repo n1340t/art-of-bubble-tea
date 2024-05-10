@@ -1,13 +1,13 @@
-const { Pool } = require("pg");
+import { Pool, PoolConfig } from 'pg';
 
-const dbParams =  {
-  host: process.env.HOST,
-  port: process.env.PORT,
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  database: process.env.DB_NAME
+const dbParams: PoolConfig = {
+  host: process.env.DB_HOST || 'localhost',
+  port: parseInt(process.env.DB_PORT as string),
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 };
 
-const db = new Pool(dbParams);
+const db: Pool = new Pool(dbParams);
 
 export default db;
