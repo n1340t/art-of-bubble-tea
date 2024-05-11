@@ -1,5 +1,5 @@
 export type DrinkData = {
-  name: string;
+  name: string[];
   size: string[];
   sweetness: string[];
   ice: string[];
