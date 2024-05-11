@@ -5,7 +5,7 @@ const getRandomItem = (array: string[] | null, count?: number) => {
     return null;
   }
 
-  if (!count) {
+  if (typeof count !== 'number') {
     const randomIndex = Math.floor(Math.random() * array.length);
     return array[randomIndex];
   }
@@ -22,7 +22,7 @@ const getRandomItem = (array: string[] | null, count?: number) => {
   }
 
   const selectedItems = Array.from(selectedIndices).map(i => array[i]);
-  return selectedItems;
+  return selectedItems.length > 0 ? selectedItems : null;
 
 };
 
@@ -30,11 +30,11 @@ const getRandomOrder = (drinks: DrinkData[]) => {
   const randomIndex = Math.floor(Math.random() * drinks.length);
   const randomDrink = drinks[randomIndex];
 
-  // Random topping count from 1 to 5
-  const randomToppingsCount = Math.floor(Math.random() * 5) + 1;
+  // Random topping count from 0 to 5
+  const randomToppingsCount = Math.floor(Math.random() * 6);
 
   const result = {
-    name: randomDrink.name,
+    name: getRandomItem(randomDrink.name),
     size: getRandomItem(randomDrink.size),
     sweetness: getRandomItem(randomDrink.sweetness),
     ice: getRandomItem(randomDrink.ice),
