@@ -108,7 +108,7 @@ export default function Test() {
 							</div>
 						)}
 						<div
-							className='bg-indigo-500 rounded text-white focus:bg-indigo-600 p-1 px-3'
+							className='bg-indigo-500 rounded text-white focus:bg-indigo-600 p-1 px-3 hidden'
 							onClick={() => {
 								if (currentPage !== 1) {
 									setCurrentPage((curr: number) => 1);
@@ -266,7 +266,8 @@ const Ingredients = ({
 			</div>
 			<div
 				className={
-					'flex items-start justify-between px-3 lg:px-4' + (show && ' py-3 border-x')
+					'flex flex-col lg:flex-row items-start justify-between px-3 lg:px-4' +
+					(show && ' py-3 border-x')
 				}
 			>
 				<table>
@@ -287,7 +288,8 @@ const Ingredients = ({
 											<>
 												<span className='text-gray-600 dark:text-gray-300'></span>
 												<span className='text-gray-800 dark:text-gray-200'>
-													{ingredients[key]}
+													{String(ingredients[key]).charAt(0).toUpperCase() +
+														String(ingredients[key]).slice(1)}
 												</span>
 											</>
 										)}
@@ -296,7 +298,7 @@ const Ingredients = ({
 						</tr>
 					))}
 				</table>
-				<div className='flex items-start gap-x-2 w-1/2'>
+				<div className='flex items-start gap-x-2 w-1/2 mt-3'>
 					<div className='text-gray-500 font-bold'>Toppings:</div>
 					<div className='flex flex-col gap-y-3 xl:gap-y-4 px-3 border-l-2 border-blue-500'>
 						{toppings &&
