@@ -2,6 +2,7 @@ import { KFTea } from '../types/kf';
 import { KF_TEA_LIST } from '../constants/kungfu';
 import { useState, useMemo, useEffect } from 'react';
 import { debounce } from './useDebounce';
+import { getRandomDrinks } from '../../../backend/controller/logic';
 
 // Add id to KFTea
 interface customKFTea extends KFTea {
@@ -10,11 +11,8 @@ interface customKFTea extends KFTea {
 
 export default function useKungfuData({
 	recipesCount,
-	shuffledRequest,
 }: {
 	recipesCount?: number;
-	
-	shuffledRequest: boolean;
 }) {
 	const [search, setSearch] = useState<string>('');
 
@@ -22,7 +20,8 @@ export default function useKungfuData({
 		setSearch((prev: any) => value);
 	}, 1000);
 
-	const recipes: any[] = KF_TEA_LIST;
+	// const recipes: any[] = KF_TEA_LIST;
+	const recipes: any[] = getRandomDrinks(recipesCount || 10);
 
 	// Add ids to keep track of the original order
 	recipes.forEach((recipe: any, index: number) => {
@@ -35,15 +34,9 @@ export default function useKungfuData({
 		});
 	}, [search]);
 
-	if (shuffledRequest === true) {
-		filteredRecipes.sort(() => Math.random() - 0.5);
-	} else {
-		filteredRecipes.sort((a, b) => a.id - b.id);
-	}
-
 	return {
 		updateSearch,
 		types: ['Standard', 'OneTopping', 'TwoorMoreToppings'],
-		recipes: filteredRecipes.slice(0, recipesCount || 10),
+		recipes: filteredRecipes,
 	};
 }
