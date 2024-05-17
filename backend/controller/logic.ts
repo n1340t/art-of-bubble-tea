@@ -66,11 +66,8 @@ export const generateRandomDrink = () => {
 		ice: ice,
 		cupSize: cupSize,
 		toppings: toppings,
+		milk: withMilk ? getRandomItem(milks) : 'No milks',
 	};
-
-	if (withMilk) {
-		drinkObject['milk'] = getRandomItem(milks);
-	}
 
 	// Add a note for the 'Pearl Taro Latte' drink
 	if (drinkName === 'Pearl Taro Latte') {
