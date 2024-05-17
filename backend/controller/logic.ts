@@ -1,8 +1,15 @@
 /**
  * logic.ts file implement the logic for generating random drink orders.
  */
-
-import { toppings, milks, sweetnessLevels, iceLevels, cupSizes, drinksWithoutMilk, drinksWithMilk } from '../db/data/drinkData';
+import { 
+  toppings, 
+  milks, 
+  sweetnessLevels, 
+  iceLevels, 
+  cupSizes, 
+  drinksWithoutMilk, 
+  drinksWithMilk 
+} from '../db/data/drinkData';
 
 // 2. Kien
 //
@@ -68,3 +75,17 @@ export const generateRandomDrink = () => {
 
   return drinkObject;
 };
+
+export const getRandomDrinks = (numDrinks: number) => {
+  const drinks: Array<any> = [];
+  for (let i = 0; i < numDrinks; i++) {
+    let randomDrink = generateRandomDrink();
+    // While the drink name has already been selected, generate a new drink
+    while (drinks.some((drink: any) => drink.name === randomDrink.name)) {
+      randomDrink = generateRandomDrink();
+    }
+    drinks.push(randomDrink);
+  }
+
+  return drinks;
+}
