@@ -34,11 +34,7 @@ yarn-error.log*
 dist
 public
 
-<<<<<<< HEAD
-.vscode/
-=======
 .vscode/
 
 #any js file transpiled from ts
 backend/**/*.js
->>>>>>> origin
