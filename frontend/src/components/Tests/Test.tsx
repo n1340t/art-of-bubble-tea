@@ -22,7 +22,6 @@ export default function Test() {
 		recipes: KFTea[];
 		types: string[];
 	} = useKungfuData({
-		shuffledRequest: isShuffledRequest,
 		recipesCount: numberOfQuestions,
 	});
 	const totalPages = Math.ceil(recipes.length / 10); // Pagination set to 10 by default
@@ -32,7 +31,8 @@ export default function Test() {
 	};
 
 	const startIndex = (currentPage - 1) * 10; // Pagination set to 10 by default
-	const currentItems: KFTea[] = recipes.slice(startIndex, startIndex + 10); // Pagination set to 10 by default
+	const currentItems: any[] = recipes.slice(startIndex, startIndex + 10); // Pagination set to 10 by default
+
 	return (
 		<div className='flex items-start w-full'>
 			<div className='flex flex-col items-center w-full pb-8'>
@@ -156,15 +156,14 @@ export default function Test() {
 							))}
 						</div>
 					)}
-					{currentItems &&
-						currentItems.map((answer: KFTea, index: number) => (
-							<div key={index}>
-								<AnswerDisplay
-									answer={answer}
-									types={types}
-								/>
-							</div>
-						))}
+					<div className='flex flex-col items-center gap-y-4'>
+						{currentItems &&
+							currentItems.map((answer: KFTea, index: number) => (
+								<div key={index}>
+									<AnswerDisplay answer={answer} />
+								</div>
+							))}
+					</div>
 				</div>
 				{currentItems && currentItems.length > 0 && totalPages > 1 && (
 					<div className='p-2 flex flex-row items-center gap-3 md:gap-5'>
@@ -194,33 +193,11 @@ export default function Test() {
 	);
 }
 
-const AnswerDisplay = ({ answer, types }: { answer: customKFTea; types: Recipe[] }) => {
+const AnswerDisplay = ({ answer }: { answer: any }) => {
 	const { id, name, availability, note, ...others } = answer;
-	const getTypes = (): string[] => {
-		// Get all the types from fields: syrup, tea, water, milk, honey
-		const types: string[] = [];
-		Object.keys(others).forEach((key: string) => {
-			if (others[key]) {
-				others[key].forEach((props: any) => {
-					if (!types.includes(props?.type)) {
-						types.push(props?.type);
-					}
-				});
-
-				// break the loop if all types are found
-				if (types.length > 0) {
-					return types;
-				}
-			}
-		});
-
-		return types;
-	};
-
-	const foundTypes: string[] = getTypes();
 
 	return (
-		<div className='relative bg-white ring-1 ring-black ring-opacity-10 rounded-lg shadow-lg px-3 md:px-5 py-2 md:py-4'>
+		<div className='relative bg-white ring-1 ring-black ring-opacity-10 rounded-lg shadow-lg px-3 md:px-5 py-2 md:py-4 w-screen lg:w-[50vw] xl:w-[33vw]'>
 			<div className='absolute top-3 right-0'>
 				<div className='flex items-center gap-2'>
 					<>
@@ -237,24 +214,12 @@ const AnswerDisplay = ({ answer, types }: { answer: customKFTea; types: Recipe[]
 				</div>
 			</div>
 			<h3 className='font-lg font-semibold py-2 border-b mb-3'>{answer?.name}</h3>
-			<ul className='flex flex-col lg:flex-row w-full justify-evenly gap-x-3 rounded-lg'>
-				{foundTypes.map((type: string, index: number) => (
-					<li
-						key={index}
-						className='w-full'
-					>
-						<RecipeType
-							key={index}
-							others={others}
-							type={type}
-							types={types}
-						/>
-					</li>
-				))}
-			</ul>
+			<div className='flex flex-col lg:flex-row w-full justify-evenly gap-x-3 rounded-lg'>
+				<Ingredients {...others} />
+			</div>
 
 			{note && (
-				<div className='border-t border-dotted border-gray-500 mt-3'>
+				<div className='border-t border-dotted border-gray-500 mt-3 w-full'>
 					<span className='text-gray-500 font-light text-[.8em] mb-2'>{'Note: '}</span>
 					<div className='bg-gray-100 text-gray-600 px-2 py-1 text-[.9em] rounded-lg'>
 						{note}
@@ -265,14 +230,12 @@ const AnswerDisplay = ({ answer, types }: { answer: customKFTea; types: Recipe[]
 	);
 };
 
-const RecipeType = ({
-	others,
-	type,
-	types,
+const Ingredients = ({
+	toppings,
+	...ingredients
 }: {
-	others: any;
-	type: string;
-	types: Recipe[];
+	toppings: any[];
+	[key: string]: any;
 }) => {
 	const [show, setShow] = useState(window.innerWidth > 768 ?? false);
 	return (
@@ -281,7 +244,6 @@ const RecipeType = ({
 				className='flex items-center justify-between bg-blue-100 text-gray-600 p-2'
 				onClick={() => setShow(window.innerWidth > 768 ? true : !show)}
 			>
-				<div>{types[type]}</div>
 				<div className={'lg:hidden block' + (show ? 'rotate-180' : '')}>
 					<svg
 						className='w-6 h-6 text-gray-800 dark:text-white'
@@ -302,43 +264,52 @@ const RecipeType = ({
 					</svg>
 				</div>
 			</div>
-			<div className={'px-3 lg:px-4' + (show && ' py-3 border-x')}>
-				{others &&
-					Object.keys(others).length > 0 &&
-					Object.keys(others).map((key: string, index: number) => (
-						<div
-							key={index}
-							className={
-								'flex flex-wrap gap-2 transition-all ease-in-out duration-300 w-full ' +
-								(show ? 'h-full mb-1' : 'lg:h-0 lg:mb-0')
-							}
-						>
-							{show &&
-								others[key] &&
-								others[key] !== null &&
-								others[key].filter((item: any) => item.type === parseInt(type))[0] && (
-									<div className='flex gap-x-1'>
-										<span className='bg-indigo-500 rounded p-0.5 px-1 lg:px-2 text-white'>{`${key}`}</span>
-
-										<span>
-											{Object.entries(
-												others[key].filter((item: any) => item.type === parseInt(type))[0]
-											).map(
-												([key, value]: [string, any], index: number) =>
-													key !== 'type' && (
-														<span
-															key={index}
-															className='text-sm'
-														>
-															{`${value} `}
-														</span>
-													)
-											)}
-										</span>
-									</div>
-								)}
-						</div>
+			<div
+				className={
+					'flex items-start justify-between px-3 lg:px-4' + (show && ' py-3 border-x')
+				}
+			>
+				<table>
+					{Object.keys(ingredients).map((key: string, index: number) => (
+						<tr key={index}>
+							<th className='text-left text-gray-500'>
+								{
+									// Capitalize the first letter of the key
+									String(key).charAt(0).toUpperCase() + String(key).slice(1)
+								}
+							</th>
+							<td>
+								<div className='p-2'>
+									{ingredients[key] &&
+										// If the ingredients[key] is an array, then map through the array and display the items
+										!Array.isArray(ingredients[key]) &&
+										String(ingredients[key]).length > 0 && (
+											<>
+												<span className='text-gray-600 dark:text-gray-300'></span>
+												<span className='text-gray-800 dark:text-gray-200'>
+													{ingredients[key]}
+												</span>
+											</>
+										)}
+								</div>
+							</td>
+						</tr>
 					))}
+				</table>
+				<div className='flex items-start gap-x-2 w-1/2'>
+					<div className='text-gray-500 font-bold'>Toppings:</div>
+					<div className='flex flex-col gap-y-3 xl:gap-y-4 px-3 border-l-2 border-blue-500'>
+						{toppings &&
+							toppings.map((item: string, index: number) => (
+								<span
+									key={index}
+									className='font-light hover:scale-110 cursor-default transition-all ease-in-out hover:bg-blue-500 hover:text-white p-1 rounded w-full'
+								>
+									{String(item).charAt(0).toUpperCase() + String(item).slice(1)}
+								</span>
+							))}
+					</div>
+				</div>
 			</div>
 		</div>
 	);
