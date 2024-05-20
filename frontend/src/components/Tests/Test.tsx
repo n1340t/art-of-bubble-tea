@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import useKungfuData from '../../hooks/useKungfuData';
-import { KFTea, Recipe } from '../../../../backend/types/kf';
+import { KFTeaDrink } from '@backend/types/kf';
 
-interface customKFTea extends KFTea {
+interface customKFTea extends KFTeaDrink {
 	id: number;
 }
 
@@ -156,7 +156,7 @@ export default function Test() {
 					)}
 					<div className='flex flex-col items-center gap-y-4'>
 						{currentItems &&
-							currentItems.map((answer: KFTea, index: number) => (
+							currentItems.map((answer: KFTeaDrink, index: number) => (
 								<div key={index}>
 									<AnswerDisplay answer={answer} />
 								</div>

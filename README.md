@@ -2,5 +2,5 @@
 An app of everything about management for bubble tea shop owner
 
 ### How to start?
-Minimum requirements: Node >= 21 \
+Minimum requirements: Node >= 22 \
 `npm run dev` open at `localhost:3000`
