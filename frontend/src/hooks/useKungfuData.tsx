@@ -4,13 +4,21 @@ import { debounce } from './useDebounce';
 import { getRandomDrinks } from '@backend/controller/logic';
 
 // Add id to KFTea
-interface customKFTea extends KFTeaDrink {
+interface CustomKFTea extends KFTeaDrink {
 	id: number;
 }
 
-export default function useKungfuData({ recipesCount }: { recipesCount?: number }) {
+export default function useKungfuData({
+	recipesCount,
+	requestShuffle,
+	resetOriginalOrder,
+}: {
+	recipesCount?: number;
+	requestShuffle: boolean;
+	resetOriginalOrder: boolean;
+}) {
 	const [search, setSearch] = useState<string>('');
-	const [drinks, setDrinks] = useState<any[]>(getRandomDrinks(recipesCount || 10));
+	const [drinks, setDrinks] = useState<CustomKFTea[]>(getRandomDrinks(recipesCount || 10));
 
 	const updateSearch = debounce((value: string) => {
 		setSearch((prev: any) => value);
@@ -20,10 +28,18 @@ export default function useKungfuData({ recipesCount }: { recipesCount?: number 
 
 	useEffect(() => {
 		const getDrinks = getRandomDrinks(recipesCount || 10);
-		setDrinks(prev => getDrinks);
-	}, [recipesCount]);
 
-	const filteredRecipes: customKFTea[] = useMemo(() => {
+		if (requestShuffle) {
+			setDrinks((prev) => getDrinks);
+		}
+		if (resetOriginalOrder) {
+			setDrinks((prev) => getDrinks.sort((a, b) => a.id - b.id));
+		}
+
+		setDrinks((prev) => getDrinks);
+	}, [recipesCount, requestShuffle, resetOriginalOrder]);
+
+	const filteredRecipes: CustomKFTea[] = useMemo(() => {
 		return drinks.filter((recipe: KFTeaDrink) => {
 			return recipe.name.toLowerCase().includes(search.toLowerCase());
 		});

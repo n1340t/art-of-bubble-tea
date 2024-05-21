@@ -80,8 +80,11 @@ export const getRandomDrinks = (numDrinks: number) => {
     .slice(0, numDrinks);
 
   // Generate a random drink order for each drink name
-  const drinkOrders = randomDrinks.map((drink) => {
-    return generateRandomDrink(drink);
+  const drinkOrders = randomDrinks.map((drink: any, index: number) => {
+    return {
+      id: index,
+      ...generateRandomDrink(drink)
+    };
   });
 
   return drinkOrders;
