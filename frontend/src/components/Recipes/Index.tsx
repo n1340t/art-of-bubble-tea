@@ -1,0 +1,73 @@
+import { useState } from 'react';
+import useRecipeData from '../../hooks/useRecipeData';
+
+export default function RecipesIndex() {
+	const [category, setCategory] = useState('allDrinks');
+	const hardCodedData = useRecipeData();
+	return (
+		<div className='relative dark:bg-gray-200 min-h-screen'>
+			<div className='fixed top-0 left-0 w-screen z-10'>
+				<div className='flex h-full w-full bg-gray-100 dark:bg-zinc-600 px-3 p-2'>
+					<h1 className='text-2xl font-semibold dark:text-gray-50'>Recipes</h1>
+					<div className=''></div>
+					<div className=''></div>
+				</div>
+			</div>
+			<div className='pt-16 pb-24 px-4'>
+				{hardCodedData && category && category.length > 0 && (
+					<div className='flex flex-wrap gap-4'>
+						{hardCodedData[category].map((recipe: any, index: number) => {
+							return (
+								<div
+									className='border p-4 rounded-lg text-gray-800 dark:border-gray-500'
+									key={index}
+								>
+									<div className='text-lg font-bold text-gray-500'>
+										{String(recipe)?.split(' ').map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+									</div>
+								</div>
+							);
+						})}
+					</div>
+				)}
+			</div>
+			
+			<ControlBar
+				data={hardCodedData}
+				setCategory={setCategory}
+			/>
+		</div>
+	);
+}
+
+const ControlBar = ({ data, setCategory }: { data: any; setCategory: any}) => {
+	return (
+		<div className='fixed bottom-0 left-0 z-10 h-auto overflow-hidden w-full'>
+			<div className='flex justify-center max-w-screen w-full'>
+				<div className='flex items-end gap-x-0 w-[fit-content] lg:px-3 overflow-x-scroll z-10 h-[4.5rem] overflow-visible'>
+					{
+						Object.keys(data).sort()
+							.map((key: string) => {
+								return (
+									<div className='relative flex border h-14 min-w-[5em] px-2 cursor-pointer bg-white dark:bg-gray-300'
+										onClick={() => setCategory(key)}
+										key={key}
+									>
+										<div className='flex h-full w-full justify-center items-center text-sm text-center dark:text-gray-600'>
+											{
+												// Split by the first capital letter and capitalize the first letter of each word
+												key.split(/(?=[A-Z])/).map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+											}
+										</div>
+										<div className='z-10 absolute -top-2.5 -right-2 bg-red-500 rounded-full w-5 h-5 text-center p-0.5 text-white text-xs'>
+											{data[key] && data[key]?.length}
+										</div>
+									</div>
+								);
+							})
+					}
+				</div>
+			</div>
+		</div>
+	);
+};
