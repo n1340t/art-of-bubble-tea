@@ -5,7 +5,7 @@ import './index.css';
 
 // import LandingPage from './components/Landing';
 import RecipesIndex from './components/Recipes/Index'
-import Test from './components/Tests/Test';
+import TestIndex from './components/Tests/Index';
 import LandingPage from './components/Landing/LandingPage';
 
 const router = createHashRouter([
@@ -19,7 +19,7 @@ const router = createHashRouter([
 	},
 	{
 		path: '/test',
-		Component: Test,
+		Component: TestIndex,
 	},
 ]);
 

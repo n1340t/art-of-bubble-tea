@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useTestData from '../../hooks/useTestData';
-import { KFTeaDrink } from '@backend/types/kf';
+import { KFTeaDrink } from '../../../../backend/types/kf';
 
 interface CustomKFTea extends KFTeaDrink {
 	id: number;
 }
 
-export default function Test() {
+export default function TestIndex() {
 	const [filter, setFilter] = useState<string>('');
 	const [numberOfQuestions, setNumberOfQuestions] = useState<number>(10);
 	const [isShuffled, setIsShuffled] = useState<boolean>(true); // Although this is not used, it is still triggers the re-render and sorting of the recipes as if the isShuffledRequest is true
@@ -209,11 +209,6 @@ export default function Test() {
 						))}
 					</div>
 				)}
-
-				{/* Go back button */}
-				<button className='translate-y-8 bg-gray-300 dark:bg-gray-800 text-gray-600 dark:text-white p-3 w-full shadow-lg'>
-					{'Go back'}
-				</button>
 			</div>
 		</div>
 	);
