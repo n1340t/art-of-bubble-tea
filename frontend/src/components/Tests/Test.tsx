@@ -34,7 +34,7 @@ export default function Test() {
 	const currentItems: any[] = recipes.slice(startIndex, startIndex + 10); // Pagination set to 10 by default
 
 	return (
-		<div className='flex items-start w-full dark:bg-gray-300'>
+		<div className='flex items-start w-full dark:bg-gray-300 min-h-screen'>
 			<div className='flex flex-col items-center w-full pb-8'>
 				<div className='z-20 fixed md:flex top-0 left-0 w-screen'>
 					<div className='bg-white dark:bg-gray-400 flex flex-col lg:flex-row lg:items-center gap-3 p-3 leading-none shadow-lg w-full'>
@@ -139,15 +139,15 @@ export default function Test() {
 								))}
 						</select>
 					</div>
-					{currentItems && totalPages > 1 && currentItems.length > 5 && (
+					{currentItems && totalPages > 1 && currentItems.length > 2 && (
 						<div className='w-full justify-center flex flex-row items-center gap-x-3 md:gap-x-5'>
 							{Array.from({ length: totalPages }, (_, index) => (
 								<button
 									key={index + 1}
 									className={`${
 										currentPage === index + 1
-											? 'bg-blue-500 text-white'
-											: 'bg-white text-black'
+											? 'bg-blue-400 dark:bg-gray-800 text-white dark:font-semibold'
+											: 'bg-white dark:bg-gray-200 text-gray-400 dark:text-gray-400'
 									} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
 									onClick={() => goToPage(index + 1)}
 								>
