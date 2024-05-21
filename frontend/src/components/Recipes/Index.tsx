@@ -58,13 +58,14 @@ export default function RecipesIndex() {
 
 			<ControlBar
 				data={hardCodedData}
+				selected={category}
 				setCategory={setCategory}
 			/>
 		</div>
 	);
 }
 
-const ControlBar = ({ data, setCategory }: { data: any; setCategory: any }) => {
+const ControlBar = ({ data, selected, setCategory }: { data: any; selected: string, setCategory: any }) => {
 	return (
 		<div className='fixed bottom-0 left-0 z-10 h-auto overflow-hidden w-full'>
 			<div className='flex justify-center max-w-screen w-full'>
@@ -73,8 +74,7 @@ const ControlBar = ({ data, setCategory }: { data: any; setCategory: any }) => {
 						.sort()
 						.map((key: string) => {
 							return (
-								<div
-									className='relative flex border h-14 min-w-[5em] px-2 cursor-pointer bg-white dark:bg-gray-300'
+								<div className={'relative flex border h-14 min-w-[5em] px-2 cursor-pointer' + (selected === key ? ' bg-indigo-500 dark:bg-gray-50 text-white' : ' bg-white dark:bg-gray-300')}
 									onClick={() => setCategory(key)}
 									key={key}
 								>
