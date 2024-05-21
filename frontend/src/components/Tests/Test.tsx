@@ -39,9 +39,30 @@ export default function Test() {
 				<div className='z-20 fixed md:flex top-0 left-0 w-screen'>
 					<div className='bg-white dark:bg-gray-400 flex flex-col lg:flex-row lg:items-center gap-3 p-3 leading-none shadow-lg w-full'>
 						<div className='flex w-full justify-center items-center'>
-							<div className='relative items-center w-full pl-4 overflow-hidden'>
+							<div
+								className='cursor-pointer -translate-x-2 flex items-center justify-center w-10 h-10 bg-gray-200 dark:bg-gray-900 dark:text-gray-50'
+								onClick={() => {
+									window.history.back();
+								}}
+							>
 								<svg
-									className='w-6 h-6 text-gray-400 dark:text-white absolute top-0 left-6 translate-y-[40%] lg:translate-y-[23%] z-10'
+									xmlns='http://www.w3.org/2000/svg'
+									fill='none'
+									viewBox='0 0 24 24'
+									strokeWidth={1.5}
+									stroke='currentColor'
+									className='w-6 h-6'
+								>
+									<path
+										strokeLinecap='round'
+										strokeLinejoin='round'
+										d='M15.75 19.5 8.25 12l7.5-7.5'
+									/>
+								</svg>
+							</div>
+							<div className='relative items-center w-full pl-0 overflow-hidden'>
+								<svg
+									className='w-6 h-6 text-gray-400 dark:text-white absolute top-0 left-2 translate-y-[40%] lg:translate-y-[23%] z-10'
 									aria-hidden='true'
 									xmlns='http://www.w3.org/2000/svg'
 									width='24'
@@ -188,6 +209,11 @@ export default function Test() {
 						))}
 					</div>
 				)}
+
+				{/* Go back button */}
+				<button className='translate-y-8 bg-gray-300 dark:bg-gray-800 text-gray-600 dark:text-white p-3 w-full shadow-lg'>
+					{'Go back'}
+				</button>
 			</div>
 		</div>
 	);
@@ -213,7 +239,9 @@ const AnswerDisplay = ({ answer }: { answer: any }) => {
 					</>
 				</div>
 			</div>
-			<h3 className='font-lg font-semibold py-2 border-b mb-3 dark:text-gray-800 text-center'>{answer?.name}</h3>
+			<h3 className='font-lg font-semibold py-2 border-b mb-3 dark:text-gray-800 text-center'>
+				{answer?.name}
+			</h3>
 			<div className='flex flex-col lg:flex-row w-full justify-evenly gap-x-3 rounded-lg'>
 				<Ingredients {...others} />
 			</div>
@@ -245,7 +273,8 @@ const Ingredients = ({
 				onClick={() => setShow(window.innerWidth > 768 ? true : !show)}
 			>
 				<div className={'lg:hidden inline-block ' + (show ? 'rotate-180' : '')}>
-					<svg className='w-6 h-6 text-gray-800 dark:text-white'
+					<svg
+						className='w-6 h-6 text-gray-800 dark:text-white'
 						aria-hidden='true'
 						xmlns='http://www.w3.org/2000/svg'
 						width='24'
@@ -264,51 +293,47 @@ const Ingredients = ({
 				</div>
 				{'Ingredients'}
 			</div>
-			{show && <div
-				className={
-					'px-3 lg:px-4' +
-					(show && ' py-3 border-x')
-				}
-			>
-				<table className='w-full'>
-					{ingredients && 
-						<tbody>
-							{Object.keys(ingredients).map((key: string, index: number) => (
-								<tr key={index}>
-									<th className='text-left text-gray-500'>
-										{
-											// Capitalize the first letter of the key
-											String(key).charAt(0).toUpperCase() + String(key).slice(1)
-										}
-									</th>
-									<td>
-										<div className='p-2 dark:text-gray-600'>
-											{ingredients[key] &&
-												// If the ingredients[key] is an array, then map through the array and display the items
-												!Array.isArray(ingredients[key]) &&
-												String(ingredients[key]).length > 0 && (
-													<>
-														<span className='text-gray-800 dark:text-gray-800'>
-															{String(ingredients[key]).charAt(0).toUpperCase() +
-																String(ingredients[key]).slice(1)}
-														</span>
-													</>
-												)}
-										</div>
-									</td>
-								</tr>
-							))}
-						</tbody>
-					}
-				</table>
-				<div className='w-full mt-3'>
-					<div className='text-gray-500 font-bold mb-2'>Toppings ({toppings.length}):</div>
-					<div className='px-3 font-light'>
-						{toppings &&
-							toppings.join(', ')}
+			{show && (
+				<div className={'px-3 lg:px-4' + (show && ' py-3 border-x')}>
+					<table className='w-full'>
+						{ingredients && (
+							<tbody>
+								{Object.keys(ingredients).map((key: string, index: number) => (
+									<tr key={index}>
+										<th className='text-left text-gray-500'>
+											{
+												// Capitalize the first letter of the key
+												String(key).charAt(0).toUpperCase() + String(key).slice(1)
+											}
+										</th>
+										<td>
+											<div className='p-2 dark:text-gray-600'>
+												{ingredients[key] &&
+													// If the ingredients[key] is an array, then map through the array and display the items
+													!Array.isArray(ingredients[key]) &&
+													String(ingredients[key]).length > 0 && (
+														<>
+															<span className='text-gray-800 dark:text-gray-800'>
+																{String(ingredients[key]).charAt(0).toUpperCase() +
+																	String(ingredients[key]).slice(1)}
+															</span>
+														</>
+													)}
+											</div>
+										</td>
+									</tr>
+								))}
+							</tbody>
+						)}
+					</table>
+					<div className='w-full mt-3'>
+						<div className='text-gray-500 font-bold mb-2'>
+							Toppings ({toppings.length}):
+						</div>
+						<div className='px-3 font-light'>{toppings && toppings.join(', ')}</div>
 					</div>
 				</div>
-			</div>}
+			)}
 		</div>
 	);
 };
