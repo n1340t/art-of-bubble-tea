@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import useKungfuData from '../../hooks/useKungfuData';
 import { KFTeaDrink } from '@backend/types/kf';
 
-interface customKFTea extends KFTeaDrink {
+interface CustomKFTea extends KFTeaDrink {
 	id: number;
 }
 
@@ -18,9 +18,11 @@ export default function Test() {
 		recipes,
 	}: {
 		updateSearch: Function;
-		recipes: any[];
+		recipes: CustomKFTea[];
 	} = useKungfuData({
 		recipesCount: numberOfQuestions,
+		requestShuffle: isShuffledRequest,
+		resetOriginalOrder: isShuffled,
 	});
 	const totalPages = Math.ceil(recipes.length / 10); // Pagination set to 10 by default
 
@@ -32,10 +34,10 @@ export default function Test() {
 	const currentItems: any[] = recipes.slice(startIndex, startIndex + 10); // Pagination set to 10 by default
 
 	return (
-		<div className='flex items-start w-full'>
+		<div className='flex items-start w-full dark:bg-gray-300'>
 			<div className='flex flex-col items-center w-full pb-8'>
 				<div className='z-20 fixed md:flex top-0 left-0 w-screen'>
-					<div className='bg-white flex flex-col lg:flex-row lg:items-center gap-3 p-3 leading-none shadow-lg w-full'>
+					<div className='bg-white dark:bg-gray-400 flex flex-col lg:flex-row lg:items-center gap-3 p-3 leading-none shadow-lg w-full'>
 						<div className='flex w-full justify-center items-center'>
 							<div className='relative items-center w-full pl-4 overflow-hidden'>
 								<svg
@@ -90,7 +92,7 @@ export default function Test() {
 
 				<div className='w-full flex flex-col gap-3 md:gap-4 px-5 md:px-10 pt-[6em] lg:pt-20 pb-6'>
 					<div className='flex flex-row items-center justify-end gap-x-3'>
-						{isShuffledRequest && (
+						{false && (
 							<div
 								className='bg-indigo-500 rounded text-white focus:bg-indigo-600 p-1 px-3'
 								onClick={() => {
@@ -106,7 +108,7 @@ export default function Test() {
 							</div>
 						)}
 						<div
-							className='bg-indigo-500 rounded text-white focus:bg-indigo-600 p-1 px-3 hidden'
+							className='bg-indigo-500 rounded text-white focus:bg-indigo-600 p-1 px-3'
 							onClick={() => {
 								if (currentPage !== 1) {
 									setCurrentPage((curr: number) => 1);
@@ -154,7 +156,7 @@ export default function Test() {
 							))}
 						</div>
 					)}
-					<div className='flex flex-col items-center gap-y-4'>
+					<div className='flex flex-col items-center gap-y-2 lg:gap-y-4'>
 						{currentItems &&
 							currentItems.map((answer: KFTeaDrink, index: number) => (
 								<div key={index}>
@@ -195,7 +197,7 @@ const AnswerDisplay = ({ answer }: { answer: any }) => {
 	const { id, name, availability, note, ...others } = answer;
 
 	return (
-		<div className='relative bg-white ring-1 ring-black ring-opacity-10 rounded-lg shadow-lg px-3 md:px-5 py-2 md:py-4 w-screen lg:w-[50vw] xl:w-[33vw]'>
+		<div className='relative bg-white dark:bg-gray-200 ring-1 ring-black ring-opacity-10 rounded-none lg:rounded-lg shadow-lg px-3 md:px-5 py-2 md:py-4 w-screen lg:w-[50vw] xl:w-[33vw]'>
 			<div className='absolute top-3 right-0'>
 				<div className='hidden items-center gap-2'>
 					<>
@@ -211,7 +213,7 @@ const AnswerDisplay = ({ answer }: { answer: any }) => {
 					</>
 				</div>
 			</div>
-			<h3 className='font-lg font-semibold py-2 border-b mb-3'>{answer?.name}</h3>
+			<h3 className='font-lg font-semibold py-2 border-b mb-3 dark:text-gray-800 text-center'>{answer?.name}</h3>
 			<div className='flex flex-col lg:flex-row w-full justify-evenly gap-x-3 rounded-lg'>
 				<Ingredients {...others} />
 			</div>
@@ -239,12 +241,11 @@ const Ingredients = ({
 	return (
 		<div className='w-full'>
 			<div
-				className='flex items-center justify-between bg-blue-100 text-gray-600 p-2'
+				className='flex items-center justify-between bg-blue-100 dark:bg-blue-500 text-gray-600 dark:text-gray-50 p-2'
 				onClick={() => setShow(window.innerWidth > 768 ? true : !show)}
 			>
-				<div className={'lg:hidden block' + (show ? 'rotate-180' : '')}>
-					<svg
-						className='w-6 h-6 text-gray-800 dark:text-white'
+				<div className={'lg:hidden inline-block ' + (show ? 'rotate-180' : '')}>
+					<svg className='w-6 h-6 text-gray-800 dark:text-white'
 						aria-hidden='true'
 						xmlns='http://www.w3.org/2000/svg'
 						width='24'
@@ -261,8 +262,9 @@ const Ingredients = ({
 						/>
 					</svg>
 				</div>
+				{'Ingredients'}
 			</div>
-			<div
+			{show && <div
 				className={
 					'px-3 lg:px-4' +
 					(show && ' py-3 border-x')
@@ -280,14 +282,13 @@ const Ingredients = ({
 										}
 									</th>
 									<td>
-										<div className='p-2'>
+										<div className='p-2 dark:text-gray-600'>
 											{ingredients[key] &&
 												// If the ingredients[key] is an array, then map through the array and display the items
 												!Array.isArray(ingredients[key]) &&
 												String(ingredients[key]).length > 0 && (
 													<>
-														<span className='text-gray-600 dark:text-gray-300'></span>
-														<span className='text-gray-800 dark:text-gray-200'>
+														<span className='text-gray-800 dark:text-gray-800'>
 															{String(ingredients[key]).charAt(0).toUpperCase() +
 																String(ingredients[key]).slice(1)}
 														</span>
@@ -307,7 +308,7 @@ const Ingredients = ({
 							toppings.join(', ')}
 					</div>
 				</div>
-			</div>
+			</div>}
 		</div>
 	);
 };
