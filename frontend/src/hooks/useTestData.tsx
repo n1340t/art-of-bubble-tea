@@ -8,7 +8,7 @@ interface CustomKFTea extends KFTeaDrink {
 	id: number;
 }
 
-export default function useKungfuData({
+export default function useTestData({
 	recipesCount,
 	requestShuffle,
 	resetOriginalOrder,

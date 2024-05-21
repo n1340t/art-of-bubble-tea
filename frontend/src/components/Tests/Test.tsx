@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import useKungfuData from '../../hooks/useKungfuData';
+import useTestData from '../../hooks/useTestData';
 import { KFTeaDrink } from '@backend/types/kf';
 
 interface CustomKFTea extends KFTeaDrink {
@@ -19,7 +19,7 @@ export default function Test() {
 	}: {
 		updateSearch: Function;
 		recipes: CustomKFTea[];
-	} = useKungfuData({
+	} = useTestData({
 		recipesCount: numberOfQuestions,
 		requestShuffle: isShuffledRequest,
 		resetOriginalOrder: isShuffled,
