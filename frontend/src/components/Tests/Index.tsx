@@ -139,7 +139,7 @@ export default function TestIndex() {
 							}}
 							role='button'
 						>
-							{'Shuffle'}
+							{'New Test'}
 						</div>
 						<select
 							onChange={(e) => {
