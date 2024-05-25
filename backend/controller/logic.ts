@@ -72,7 +72,6 @@ export const generateRandomDrink = (drinkName: string = '') => {
 };
 
 export const getRandomDrinks = (numDrinks: number) => {
-  // Concatenate the drinksWithoutMilk and drinksWithMilk arrays to get all drink names
   const drinks = [...allDrinks];
 
   const randomDrinks = drinks

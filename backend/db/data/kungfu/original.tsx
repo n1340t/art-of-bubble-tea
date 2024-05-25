@@ -1,10 +1,10 @@
-import { KFTeaDrink } from "@backend/types/kf";
+import { KFTeaDrink } from '@backend/types/kf';
 
 export const ORIGINAL: KFTeaDrink[] = [
   {
     name: 'Jin Xuan Oolong Tea',
     availability: true,
-    label: ['COLD'],
+    label: ['RECOMMEND', 'COLD', 'HOT'],
     recipes: [
       {
         tea: [
@@ -56,7 +56,7 @@ export const ORIGINAL: KFTeaDrink[] = [
   {
     name: 'Assam Black Tea',
     availability: true,
-    label: ['COLD'],
+    label: ['COLD', 'HOT'],
     recipes: [
       {
         tea: [
@@ -129,7 +129,7 @@ export const ORIGINAL: KFTeaDrink[] = [
   {
     name: 'Jasmine Green Tea',
     availability: true,
-    label: ['COLD'],
+    label: ['COLD', 'HOT'],
     recipes: [
       {
         tea: [
@@ -183,6 +183,6 @@ export const ORIGINAL: KFTeaDrink[] = [
     label: ['COLD'],
     availability: false,
     note: 'tea: 380 (40ml water)-300-240ml',
-    recipes: [{}, {}, {}],
+    recipes: [],
   },
 ];

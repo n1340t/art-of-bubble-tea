@@ -135,7 +135,6 @@ export const LATTE: KFTeaDrink[] = [
     name: 'Pearl Chocolate Latte',
     label: ['COLD', 'HOT', 'MILK'],
     availability: true,
-
     recipes: [
       {
         syrup: [
@@ -229,7 +228,7 @@ export const LATTE: KFTeaDrink[] = [
   {
     name: 'Pearl Matcha Latte',
     availability: true,
-    label: ['COLD'],
+    label: ['COLD', 'HOT', 'MILK'],
     recipes: [
       {
         syrup: [
@@ -322,9 +321,8 @@ export const LATTE: KFTeaDrink[] = [
   },
   {
     name: 'Pearl Taro Latte',
-    label: ['COLD', 'HOT', 'MILK'],
+    label: ['COLD', 'HOT', 'MILK', 'RECOMMEND'],
     availability: true,
-    note: 'Pearl + Taro: 100 + 120g 80 _ 90g (if no pearls, Taro: 160-120g)',
     recipes: [
       {
         water: [
@@ -338,6 +336,7 @@ export const LATTE: KFTeaDrink[] = [
           {
             value: 140,
             unit: 'ml',
+            note: 'if no pearls, add extra 40ml milk',
           },
         ],
         honey: [
@@ -348,10 +347,15 @@ export const LATTE: KFTeaDrink[] = [
         ],
         toppings: [
           {
-            value: 120,
+            value: 100,
             unit: 'g',
             note: 'Pearl',
           },
+          {
+            value: 120,
+            unit: 'g',
+            note: 'Taro - If no pearls, Taro: 160'
+          }
         ],
       },
       {
@@ -373,6 +377,18 @@ export const LATTE: KFTeaDrink[] = [
             value: 0.2,
             unit: 'honey',
           },
+        ],
+        toppings: [
+          {
+            value: 80,
+            unit: 'g',
+            note: 'Pearl',
+          },
+          {
+            value: 90,
+            unit: 'g',
+            note: 'Taro - If no pearls, Taro: 120'
+          }
         ],
       },
     ],
