@@ -1,6 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useTestData from '../../hooks/useTestData';
-import { KFTeaDrink } from '../../../../backend/types/kf';
+import { KFTeaDrink } from '@backend/types/kf';
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
+import { toppings } from '@backend/db/data/kungfu/order-options';
+import { getRandomToppings } from '@backend/controller/logic';
 
 interface CustomKFTea extends KFTeaDrink {
 	id: number;
@@ -253,6 +257,20 @@ const AnswerDisplay = ({ answer }: { answer: any }) => {
 	);
 };
 
+// For dropbox topping
+export interface ToppingOptions {
+		value: string,
+		label: string
+}
+
+export const toppingOptions: ToppingOptions[] = toppings.map((topping) => ({
+	value: topping,
+	label: topping,
+  }));
+
+/*-----------------------------------------------------------------------*/
+
+
 const Ingredients = ({
 	toppings,
 	...ingredients
@@ -261,6 +279,46 @@ const Ingredients = ({
 	[key: string]: any;
 }) => {
 	const [show, setShow] = useState(window.innerWidth > 768 ?? false);
+	const animatedComponents = makeAnimated(); 
+	const [selectedToppings, setSelectedToppings] = useState<ToppingOptions[]>([])
+	const [buttonHovered, setButtonHovered] = useState(false);
+
+	const handleToppingsChange = (selectedOptions: any) => {
+		setSelectedToppings(selectedOptions);
+	};
+	
+	// Display selected toppings
+	useEffect(() => {
+		const displaySelectedElements = document.getElementsByClassName('displaySelected');
+		const displayRandomElements = document.getElementsByClassName('displayRandom');
+	
+		for (let i = 0; i < displaySelectedElements.length; i++) {
+			// declare as HTMLElement just for remove warning
+			(displaySelectedElements[i] as HTMLElement).style.display = selectedToppings.length > 0 ? "inline" : "none";
+		}
+	}, [selectedToppings]);
+
+	// Random toppings
+	const handleRecommend = () => {
+		const randomToppings: string[] = getRandomToppings(); // Call getRandomToppings function
+		const convertedToppings: ToppingOptions[] = randomToppings.map(topping => ({
+		  value: topping,
+		  label: topping,
+		}));
+		setSelectedToppings(convertedToppings);
+	  };
+	/*************************************************************************/
+
+	// Check if button was hovered
+	const hoverButton = () => {
+		setButtonHovered(true);
+	}
+
+	const leaveHoverButton = () => {
+		setButtonHovered(false);
+	}
+
+
 	return (
 		<div className='w-full'>
 			<div
@@ -322,10 +380,35 @@ const Ingredients = ({
 						)}
 					</table>
 					<div className='w-full mt-3'>
-						<div className='text-gray-500 font-bold mb-2'>
-							Toppings ({toppings.length}):
+						<div className='text-gray-500 font-bold mb-2 flex items-center gap-x-4'>
+							Toppings ({selectedToppings.length}):
+							<Select
+								closeMenuOnSelect={false}
+								components={animatedComponents}
+								value={selectedToppings}
+								onChange={handleToppingsChange}
+								isMulti
+								options={toppingOptions}
+								placeholder= "Select toppings"
+							/>
+							<button style=
+							{{
+								border: '1px solid', 
+								padding: '10px', 
+								borderRadius: '10px', 
+								backgroundColor: buttonHovered ? 'rgb(219, 234, 254)' : '', 
+								transition: "background-color 0.2s linear"
+							}}
+							onClick={handleRecommend}
+							onMouseEnter={hoverButton}
+							onMouseLeave={leaveHoverButton}
+							>
+								Recommend
+							</button>
 						</div>
-						<div className='px-3 font-light'>{toppings && toppings.join(', ')}</div>
+						<div className='px-3 font-light displaySelected' style={{display: 'none'}}>
+							{selectedToppings && selectedToppings.map((topping: any) => topping.label).join(', ')}
+						</div>
 					</div>
 				</div>
 			)}
