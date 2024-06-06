@@ -257,7 +257,6 @@ const AnswerDisplay = ({ answer, newTestTrigger }: { answer: any, newTestTrigger
     );
 };
 
-
 // For dropbox topping
 export interface ToppingOptions {
     value: string,
@@ -268,6 +267,7 @@ export const toppingOptions: ToppingOptions[] = toppings.map((topping) => ({
     value: topping,
     label: topping,
 }));
+
 
 const Ingredients = ({
     toppings,
