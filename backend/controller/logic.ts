@@ -41,7 +41,7 @@ export const getRandomToppings = () => {
 	// return Array.from(uniqueToppings);
 
 	return toppings.sort(() => 0.5 - Math.random()).slice(0, numToppings)
-		.map((topping) => topping.charAt(0).toUpperCase() + topping.slice(1));
+		.map((topping) => topping.charAt(0) + topping.slice(1));
 };
 
 /**
