@@ -5,6 +5,7 @@ import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import { toppings } from '@backend/db/data/kungfu/order-options';
 import { getRandomToppings } from '@backend/controller/logic';
+import { HashLoader, RingLoader } from 'react-spinners';
 
 interface CustomKFTea extends KFTeaDrink {
     id: number;
@@ -17,10 +18,12 @@ export default function TestIndex() {
     const [isShuffledRequest, setIsShuffledRequest] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [newTestTrigger, setNewTestTrigger] = useState<number>(0);
+    const [loading, setLoading] = useState<boolean>(false); // Initialize the loading state
 
-	// Use for trigger the UseEffect 
+    // Use for trigger the UseEffect 
     const handleNewTest = () => {
         setNewTestTrigger(prev => prev + 1);
+        setLoading(true);
     };
 
     const {
@@ -37,11 +40,21 @@ export default function TestIndex() {
     const totalPages = Math.ceil(recipes.length / 10); // Pagination set to 10 by default
 
     const goToPage = (page: number) => {
-        setCurrentPage(page);
+        setLoading(true);
+        setTimeout(() => {
+            setCurrentPage(page);
+            setLoading(false);
+        }, 1000);
     };
 
     const startIndex = (currentPage - 1) * 10; // Pagination set to 10 by default
     const currentItems: any[] = recipes.slice(startIndex, startIndex + 10); // Pagination set to 10 by default
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        }, 3000);
+    }, [newTestTrigger, numberOfQuestions]);
 
     return (
         <div className='flex items-start w-full dark:bg-gray-300 min-h-screen'>
@@ -109,11 +122,15 @@ export default function TestIndex() {
                                     value={filter}
                                     onChange={(e) => {
                                         e.preventDefault();
+                                        setLoading(true);
                                         if (currentPage !== 1) {
                                             setCurrentPage((curr: number) => 1);
                                         }
                                         setFilter((prev: any) => e.target.value);
                                         updateSearch(e.target.value);
+                                        setTimeout(() => {
+                                            setLoading(false);
+                                        }, 500);
                                     }}
                                 />
                             </div>
@@ -143,6 +160,7 @@ export default function TestIndex() {
                                     setCurrentPage((curr: number) => 1);
                                 }
                                 setNumberOfQuestions(parseInt(e.target.value));
+                                handleNewTest();
                             }}
                             className='bg-gray-50 ring-1 ring-black/20 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                         >
@@ -152,6 +170,7 @@ export default function TestIndex() {
                                     <option
                                         key={index}
                                         value={value}
+                                        disabled={loading}
                                     >{`Get ${value} recipes`}</option>
                                 ))}
                         </select>
@@ -166,6 +185,8 @@ export default function TestIndex() {
                                         : 'bg-white dark:bg-gray-200 text-gray-400 dark:text-gray-400'
                                         } border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                                     onClick={() => goToPage(index + 1)}
+                                    disabled={loading}
+                                    style={{ opacity: loading ? 0.5 : 1 }}
                                 >
                                     {index + 1}
                                 </button>
@@ -173,12 +194,18 @@ export default function TestIndex() {
                         </div>
                     )}
                     <div className='flex flex-col items-center gap-y-2 lg:gap-y-4'>
-                        {currentItems &&
-                            currentItems.map((answer: KFTeaDrink, index: number) => (
-                                <div key={index}>
-                                    <AnswerDisplay answer={answer} newTestTrigger={newTestTrigger} />
-                                </div>
-                            ))}
+                        {loading ? (
+                            <div className='flex justify-center items-center w-full h-screen'>
+                                <RingLoader color="#4467ff" size={150} />
+                            </div>
+                        ) :
+                            (currentItems &&
+                                currentItems.map((answer: KFTeaDrink, index: number) => (
+                                    <div key={index}>
+                                        <AnswerDisplay answer={answer} newTestTrigger={newTestTrigger} />
+                                    </div>
+                                ))
+                            )}
                     </div>
                 </div>
                 {currentItems && currentItems.length > 0 && totalPages > 1 && (
@@ -197,6 +224,8 @@ export default function TestIndex() {
                                         behavior: 'smooth',
                                     });
                                 }}
+                                disabled={loading}
+                                style={{ opacity: loading ? 0.5 : 1 }}
                             >
                                 {index + 1}
                             </button>
@@ -257,7 +286,6 @@ const AnswerDisplay = ({ answer, newTestTrigger }: { answer: any, newTestTrigger
     );
 };
 
-
 // For dropbox topping
 export interface ToppingOptions {
     value: string,
@@ -282,6 +310,7 @@ const Ingredients = ({
     const animatedComponents = makeAnimated();
     const [selectedToppings, setSelectedToppings] = useState<ToppingOptions[]>([]);
     const [buttonHovered, setButtonHovered] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const handleToppingsChange = (selectedOptions: any) => {
         setSelectedToppings(selectedOptions);
@@ -292,12 +321,18 @@ const Ingredients = ({
     }, [newTestToppings]);
 
     const handleRecommend = () => {
-        const randomToppings: string[] = getRandomToppings();
-        const convertedToppings: ToppingOptions[] = randomToppings.map(topping => ({
-            value: topping,
-            label: topping,
-        }));
-        setSelectedToppings(convertedToppings);
+        setLoading(true);
+        setSelectedToppings([]); // selectedToppings.length = 0 while loading
+        setButtonHovered(false);
+        setTimeout(() => {
+            const randomToppings: string[] = getRandomToppings();
+            const convertedToppings: ToppingOptions[] = randomToppings.map(topping => ({
+                value: topping,
+                label: topping,
+            }));
+            setSelectedToppings(convertedToppings);
+            setLoading(false);
+        }, 2000);
     };
 
     const hoverButton = () => {
@@ -367,33 +402,45 @@ const Ingredients = ({
                     <div className='w-full mt-3'>
                         <div className='text-gray-500 font-bold mb-2'>
                             Toppings ({selectedToppings.length}):
-                            <Select
-                                className='dropbox'
-                                closeMenuOnSelect={false}
-                                components={animatedComponents}
-                                value={selectedToppings}
-                                onChange={handleToppingsChange}
-                                isMulti
-                                options={toppingOptions}
-                                placeholder="Select toppings"
-                                styles={{
-                                    control: (provided, state) => ({
-                                        ...provided,
-                                        margin: '10px 0'
-                                    })
-                                }}
-                            />
+                            {loading ? (
+                                <div className='flex justify-center items-center mt-3'>
+                                    <HashLoader
+                                        color='#6c36f6'
+                                        loading={loading}
+                                    />
+                                </div>
+                            ) : (
+                                <Select
+                                    className='dropbox'
+                                    closeMenuOnSelect={false}
+                                    components={animatedComponents}
+                                    value={selectedToppings}
+                                    onChange={handleToppingsChange}
+                                    isMulti
+                                    options={toppingOptions}
+                                    placeholder="Select toppings"
+                                    styles={{
+                                        control: (provided, state) => ({
+                                            ...provided,
+                                            margin: '10px 0'
+                                        })
+                                    }}
+                                />
+                            )}
+
                             <button style=
                                 {{
                                     border: '1px solid',
                                     padding: '10px',
                                     borderRadius: '10px',
-                                    backgroundColor: buttonHovered ? 'rgb(219, 234, 254)' : '',
-                                    transition: "background-color 0.2s linear"
+                                    backgroundColor: loading || buttonHovered ? 'rgb(219, 234, 254)' : '',
+                                    transition: "background-color 0.2s linear",
+                                    opacity: loading ? 0.5 : 1
                                 }}
                                 onClick={handleRecommend}
                                 onMouseEnter={hoverButton}
                                 onMouseLeave={leaveHoverButton}
+                                disabled={loading}
                             >
                                 Smart Suggestions
                             </button>
