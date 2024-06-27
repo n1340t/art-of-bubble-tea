@@ -7,6 +7,7 @@ import { toppings } from '@backend/db/data/kungfu/order-options';
 import { getRandomToppings } from '@backend/controller/logic';
 import { HashLoader, RingLoader } from 'react-spinners';
 
+
 interface CustomKFTea extends KFTeaDrink {
     id: number;
 }
@@ -100,7 +101,6 @@ export default function TestIndex() {
                                         d='m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z'
                                     />
                                 </svg>
-
                                 <div
                                     className={
                                         'absolute cursor-pointer transition-all ease-in-out duration-500 top-0 right-3.5 translate-y-3/4 lg:translate-y-1/2 text-gray-400' +
@@ -123,6 +123,7 @@ export default function TestIndex() {
                                     onChange={(e) => {
                                         e.preventDefault();
                                         setLoading(true);
+                                  
                                         if (currentPage !== 1) {
                                             setCurrentPage((curr: number) => 1);
                                         }
@@ -161,6 +162,7 @@ export default function TestIndex() {
                                 }
                                 setNumberOfQuestions(parseInt(e.target.value));
                                 handleNewTest();
+
                             }}
                             className='bg-gray-50 ring-1 ring-black/20 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                         >
@@ -171,6 +173,7 @@ export default function TestIndex() {
                                         key={index}
                                         value={value}
                                         disabled={loading}
+
                                     >{`Get ${value} recipes`}</option>
                                 ))}
                         </select>
@@ -187,6 +190,7 @@ export default function TestIndex() {
                                     onClick={() => goToPage(index + 1)}
                                     disabled={loading}
                                     style={{ opacity: loading ? 0.5 : 1 }}
+
                                 >
                                     {index + 1}
                                 </button>
@@ -273,7 +277,6 @@ const AnswerDisplay = ({ answer, newTestTrigger }: { answer: any, newTestTrigger
             <div className='flex flex-col lg:flex-row w-full justify-evenly gap-x-3 rounded-lg'>
                 <Ingredients {...others} newTestToppings={newTestToppings} />
             </div>
-
             {note && (
                 <div className='border-t border-dotted border-gray-500 mt-3 w-full'>
                     <span className='text-gray-500 font-light text-[.8em] mb-2'>{'Note: '}</span>
@@ -311,7 +314,6 @@ const Ingredients = ({
     const [selectedToppings, setSelectedToppings] = useState<ToppingOptions[]>([]);
     const [buttonHovered, setButtonHovered] = useState(false);
     const [loading, setLoading] = useState(false);
-
     const handleToppingsChange = (selectedOptions: any) => {
         setSelectedToppings(selectedOptions);
     };
@@ -427,7 +429,6 @@ const Ingredients = ({
                                     }}
                                 />
                             )}
-
                             <button style=
                                 {{
                                     border: '1px solid',
