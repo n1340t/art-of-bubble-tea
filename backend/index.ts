@@ -2,7 +2,8 @@ import recipesRouter from "../backend/routes/recipes";
 import ordersRouter from "../backend/routes/orders";
 import dotenv from 'dotenv';
 
-import {initialize, query} from '../database/config';
+import {initializeDatabase, insertSeeds} from '../backend/db/insertSeeds'
+
 const dotenvResult = dotenv.config();
 if (dotenvResult.error) {
   throw dotenvResult.error;
@@ -26,32 +27,12 @@ app.use(cors());
 if (dev) {
   app.use(webpackDev.comp).use(webpackDev.hot);
 }
+
 (async () => {
-  await initialize();
+  await initializeDatabase();
   console.log('Database initialized.');
-  
-  /**
-   * FOR TESTING PURPOSES, DELETE WHEN DONE <<<<<<<<<<<<<<<<<<<<< 
-   */
-  await query(`create table if not exists recipes (
-    id int primary key auto_increment,
-    name varchar(255) not null,
-    description text not null,
-    price decimal(10, 2) not null,
-    image varchar(255) not null
-    );`);
-  await query(`create table if not exists orders (
-    id int primary key auto_increment,
-    name varchar(255) not null,
-    email varchar(255) not null,
-    phone varchar(255) not null,
-    address varchar(255) not null,
-    total decimal(10, 2) not null
-    );`);
-  console.log(`Tables created.`);
-  /**
-   * FOR TESTING PURPOSES, DELETE WHEN DONE <<<<<<<<<<<<<<<<<<<<< 
-   */
+  await insertSeeds();
+  console.log('Seeds inserted.');
 })();
 
 app.get('/', (req: express.Request, res: express.Response) => {
