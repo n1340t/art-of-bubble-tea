@@ -1,6 +1,9 @@
 import recipesRouter from "../backend/routes/recipes";
 import ordersRouter from "../backend/routes/orders";
 import dotenv from 'dotenv';
+
+import {initializeDatabase, insertSeeds} from '../backend/db/insertSeeds'
+
 const dotenvResult = dotenv.config();
 if (dotenvResult.error) {
   throw dotenvResult.error;
@@ -24,6 +27,14 @@ app.use(cors());
 if (dev) {
   app.use(webpackDev.comp).use(webpackDev.hot);
 }
+
+(async () => {
+  await initializeDatabase();
+  console.log('Database initialized.');
+  await insertSeeds();
+  console.log('Seeds inserted.');
+})();
+
 app.get('/', (req: express.Request, res: express.Response) => {
   res.send('Hello')
 });
