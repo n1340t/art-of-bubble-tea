@@ -31,7 +31,6 @@ const insertSeeds = async() => {
     VALUES (?, ? ,?)
   `;
   
-
   for (let i = 0; i < 1000; i++) {
     const randomFirstName = faker.person.firstName();
     const randomLastName = faker.person.lastName();
@@ -45,15 +44,12 @@ const insertSeeds = async() => {
     } catch(error) {
       console.error(`Error inserting seeds: `, error);
     }
-  
   }
-
   await connection.end();
 }
 
-(async () => {
-  await initializeDatabase();
-  await insertSeeds();
-})();
-
+export { 
+  initializeDatabase, 
+  insertSeeds 
+}
 
