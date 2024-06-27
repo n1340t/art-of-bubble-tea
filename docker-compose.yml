@@ -1,6 +1,6 @@
 services:
   db:
-    image: mysql:latest
+    image: mysql/mysql-server
     restart: unless-stopped
     environment:
       - MYSQL_DATABASE=$MYSQLDB_DATABASE
